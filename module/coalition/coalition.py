@@ -103,15 +103,10 @@ class Coalition(CoalitionCombat, CampaignEvent):
             self.config.override(
                 Coalition_Fleet='multi',
             )
-        try:
-            self.emotion.check_reduce(battle=self.coalition_get_battles(event, stage))
-        except ScriptEnd:
-            self.coalition_map_exit(event)
-            raise
+        self.emotion.check_reduce(battle=self.coalition_get_battles(event, stage))
 
         self.enter_map(event=event, stage=stage, mode=fleet)
         if self.triggered_stop_condition(oil_check=True):
-            self.coalition_map_exit(event)
             raise ScriptEnd
         self.coalition_combat()
 

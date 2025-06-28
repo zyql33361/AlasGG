@@ -1,4 +1,27 @@
-from deploy.config import DeployConfig as _DeployConfig
+import copy
+
+from filelock import FileLock
+
+from deploy.Windows.config import DeployConfig as _DeployConfig
+from deploy.Windows.utils import *
+
+
+def poor_yaml_read_with_lock(file):
+    if not os.path.exists(file):
+        return {}
+
+    with FileLock(f"{file}.lock"):
+        return poor_yaml_read(file)
+
+
+def poor_yaml_write_with_lock(data, file, template_file=DEPLOY_TEMPLATE):
+    folder = os.path.dirname(file)
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+
+    with FileLock(f"{file}.lock"):
+        with FileLock(f"{DEPLOY_TEMPLATE}.lock"):
+            return poor_yaml_write(data, file, template_file)
 
 
 class DeployConfig(_DeployConfig):

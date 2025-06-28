@@ -101,8 +101,7 @@ class Scrcpy(ScrcpyCore, Uiautomator2):
                 if thread is None or not thread.is_alive():
                     raise ScrcpyError('_scrcpy_stream_loop_thread died')
                 if self._scrcpy_last_frame_time > now:
-                    # no copy
-                    screenshot = self._scrcpy_last_frame
+                    screenshot = self._scrcpy_last_frame.copy()
                     return screenshot
 
     @retry

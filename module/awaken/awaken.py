@@ -1,4 +1,5 @@
 from module.awaken.assets import *
+from module.equipment.assets import *
 from module.base.timer import Timer
 from module.exception import ScriptError
 from module.logger import logger
@@ -18,6 +19,34 @@ class ShipLevel(Digit):
 
 
 class Awaken(Dock):
+    def ship_info_enter(self, click_button, check_button=EQUIPMENT_OPEN, long_click=True, skip_first_screenshot=True):
+        enter_timer = Timer(10)
+
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            # End
+            if self.appear(check_button, offset=(5, 5)):
+                break
+
+            # Long click accidentally became normal click, exit from dock
+            if long_click:
+                if self.appear(DOCK_CHECK, offset=(20, 20), interval=3):
+                    logger.info(f'ship_info_enter {DOCK_CHECK} -> {BACK_ARROW}')
+                    self.device.click(BACK_ARROW)
+                    continue
+            if enter_timer.reached():
+                if long_click:
+                    self.device.long_click(click_button, duration=(1.5, 1.7))
+                else:
+                    self.device.click(click_button)
+                enter_timer.reset()
+            if self.handle_game_tips():
+                continue
+
     def _get_button_state(self, button: Button):
         """
         Args:

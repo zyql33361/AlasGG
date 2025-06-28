@@ -635,6 +635,7 @@ class RewardTacticalClass(Dock):
         # [120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120]
         level_ocr = LevelOcr(CARD_LEVEL_GRIDS.buttons, name='DOCK_LEVEL_OCR', threshold=64)
         timeout = Timer(1, count=1).start()
+
         while 1:
             list_level = level_ocr.ocr(self.device.image)
             first_ship = next((i for i, x in enumerate(list_level) if x > 0), len(list_level))
@@ -644,7 +645,6 @@ class RewardTacticalClass(Dock):
                 break
             if first_empty >= first_ship:
                 break
-            self.device.screenshot()
 
         should_select_button = None
         for button, level in list(zip(CARD_GRIDS.buttons, list_level))[self.dock_select_index:]:
