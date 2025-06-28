@@ -87,7 +87,7 @@
       "help": ""
     },
     "Coalition": {
-      "name": "星霜海嵐",
+      "name": "ネオンシティの探索者",
       "help": ""
     },
     "MaritimeEscort": {
@@ -123,7 +123,7 @@
       "help": ""
     },
     "CoalitionSp": {
-      "name": "星霜海嵐SP",
+      "name": "ネオンシティの探索者SP",
       "help": ""
     },
     "Commission": {
@@ -689,6 +689,7 @@
       "campaign_main": "campaign_main",
       "coalition_20230323": "星霜海嵐",
       "coalition_20240627": "リトル学園へようこそ",
+      "coalition_20250626": "ネオンシティの探索者",
       "event_20200227_cn": "凍絶の北海",
       "event_20200312_cn": "南洋に靡く硝煙（復刻）",
       "event_20200326_cn": "闇靄払う銀翼",
@@ -1331,13 +1332,13 @@
       "help": "Coalition._info.help"
     },
     "Mode": {
-      "name": "Coalition.Mode.name",
+      "easy": "easy",
+      "ex": "ex",
+      "hard": "hard",
       "help": "Coalition.Mode.help",
-      "tc1": "tc1",
-      "tc2": "tc2",
-      "tc3": "tc3",
-      "sp": "sp",
-      "ex": "ex"
+      "name": "Coalition.Mode.name",
+      "normal": "normal",
+      "sp": "sp"
     },
     "Fleet": {
       "name": "Coalition.Fleet.name",

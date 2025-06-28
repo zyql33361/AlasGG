@@ -87,7 +87,7 @@
       "help": ""
     },
     "Coalition": {
-      "name": "Frostfall",
+      "name": "Neon City Investigator",
       "help": ""
     },
     "MaritimeEscort": {
@@ -123,7 +123,7 @@
       "help": ""
     },
     "CoalitionSp": {
-      "name": "Frostfall SP",
+      "name": "Neon City Investigator SP",
       "help": ""
     },
     "Commission": {
@@ -689,6 +689,7 @@
       "campaign_main": "campaign_main",
       "coalition_20230323": "Frostfall",
       "coalition_20240627": "Welcome to Little Academy",
+      "coalition_20250626": "The Neon City Investigator",
       "event_20200227_cn": "Northern Overture",
       "event_20200312_cn": "The Solomon Ranger Rerun",
       "event_20200326_cn": "Microlayer Medley",
@@ -1331,13 +1332,13 @@
       "help": "Fleets must be prepared manually in game before running"
     },
     "Mode": {
+      "easy": "Easy",
+      "ex": "EX",
+      "hard": "Hard",
+      "help": "SP needs to use event daily SP",
       "name": "Mode",
-      "help": "SP needs to use event daily SP to run",
-      "tc1": "tc1",
-      "tc2": "tc2",
-      "tc3": "tc3",
-      "sp": "sp",
-      "ex": "EX"
+      "normal": "Normal",
+      "sp": "SP"
     },
     "Fleet": {
       "name": "Fleet",
