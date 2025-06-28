@@ -8,7 +8,7 @@ from typing import Any
 
 from cached_property import cached_property
 
-from deploy.config import DeployConfig
+from deploy.Windows.config import DeployConfig
 from module.base.timer import Timer
 from module.config.deep import deep_get
 from module.config.utils import read_file, get_server_last_update

@@ -25,3 +25,4 @@ TEMPLATE_INVEST = Template(file={'cn': './assets/cn/event_hospital/TEMPLATE_INVE
 TEMPLATE_INVEST2 = Template(file={'cn': './assets/cn/event_hospital/TEMPLATE_INVEST2.png', 'en': './assets/cn/event_hospital/TEMPLATE_INVEST2.png', 'jp': './assets/cn/event_hospital/TEMPLATE_INVEST2.png', 'tw': './assets/cn/event_hospital/TEMPLATE_INVEST2.png'})
 TEMPLATE_REMAIN_CURRENT = Template(file={'cn': './assets/cn/event_hospital/TEMPLATE_REMAIN_CURRENT.png', 'en': './assets/en/event_hospital/TEMPLATE_REMAIN_CURRENT.png', 'jp': './assets/jp/event_hospital/TEMPLATE_REMAIN_CURRENT.png', 'tw': './assets/tw/event_hospital/TEMPLATE_REMAIN_CURRENT.png'})
 TEMPLATE_REMAIN_TIMES = Template(file={'cn': './assets/cn/event_hospital/TEMPLATE_REMAIN_TIMES.png', 'en': './assets/en/event_hospital/TEMPLATE_REMAIN_TIMES.png', 'jp': './assets/jp/event_hospital/TEMPLATE_REMAIN_TIMES.png', 'tw': './assets/tw/event_hospital/TEMPLATE_REMAIN_TIMES.png'})
+

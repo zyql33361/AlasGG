@@ -12,7 +12,7 @@ To add a new event, add a new row in here, and run `python -m module.config.conf
 
 **CN, EN, JP, TW** Event names in GUI. If an event is not aired on some servers, use `-`.
 
-| Aired Date | Directory                | Event Name                                   | CN                     | EN                                           | JP                                   | TW                       |
+| 20250417   | coalition 20230323       | Frostfall                                    | 极地风暴               | Frostfall                                    | 星霜海嵐       | Aired Date | Directory                | Event Name                                   | CN                     | EN                                           | JP                                   | TW                       |
 | :--------- | :----------------------- | :------------------------------------------- | :--------------------- | :------------------------------------------- | :----------------------------------- | :----------------------- |
 | 20170607   | war archives 20181020 en | Strive, Wish, and Strategize                 | 努力、希望和计划       | Strive, Wish, and Strategize                 | 努力、希望と計画                     | 努力、希望和計劃         |
 | 20170802   | war archives 20191031 en | Divergent Chessboard                         | 异色格                 | Divergent Chessboard                         | 鏡写されし異色                       | 異色格                   |
@@ -245,4 +245,3 @@ To add a new event, add a new row in here, and run `python -m module.config.conf
 | 20250520   | event 20250520 cn        | A Rose on the High Tower                     | 高塔上的蔷薇           | A Rose on the High Tower                     | 高い塔の薔薇                         | -                        |
 | 20250612   | event 20250520 cn        | A Rose on the High Tower                     | -                      | -                                            | -                                    | 高塔上的薔薇             |
 | 20250619   | event 20230525 cn        | Confluence of Nothingness                    | 复刻空相交汇点         | Confluence of Nothingness Rerun              | 覆天せし万象の塵（復刻）             | -                        |
-| 20250626   | coalition 20250626       | The Neon City Investigator                   | 迷彩都市的寻踪者       | The Neon City Investigator                   | ネオンシティの探索者                 | -                        |

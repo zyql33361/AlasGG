@@ -3,11 +3,11 @@ Deploy:
     # URL of AzurLaneAutoScript repository
     # [CN user] Use 'cn' to get update from git-over-cdn service
     # [Other] Use 'global' to get update from https://github.com/LmeSzinc/StarRailCopilot
-    Repository: https://github.com/zyql33361/AlasGG
+    Repository: https://github.com/CJF2025/000
     # Branch of Alas
     # [Developer] Use 'dev', 'app', etc, to try new features
     # [Other] Use 'master', the stable branch
-    Branch: master
+    Branch: main
     # Filepath of git executable `git.exe`
     # [Easy installer] Use './toolkit/Git/mingw64/bin/git.exe'
     # [Other] Use you own git
