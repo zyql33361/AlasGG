@@ -1,0 +1,30 @@
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整提交历史
+
+      - name: Add Upstream Remote
+        run: |
+          git remote add upstream https://github.com/SevCrane/AlasGG.git
+          git fetch upstream
+
+      - name: Merge Upstream
+        run: |
+          git config --global user.name "zyql33361"
+          git config --global user.email "zyql613052@gmail.com"
+          git checkout master
+          git merge -X theirs upstream/master --allow-unrelated-histories
+          git push origin master --force
