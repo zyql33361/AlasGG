@@ -18,7 +18,7 @@ jobs:
 
       - name: Add Upstream Remote
         run: |
-          git remote add upstream https://github.com/SevCrane/AlasGG.git
+          git remote add upstream https://github.com/LmeSzinc/AzurLaneAutoScript.git
           git fetch upstream
 
       - name: Merge Upstream
