@@ -14,14 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取完整提交历史
+          fetch-depth: 0
 
       - name: Add Upstream Remote
         run: |
           git remote add upstream https://github.com/LmeSzinc/AzurLaneAutoScript.git
           git fetch upstream
-          
-      - name: Set Local Timezone  # 新增时区设置步骤
+
+      - name: Set Local Timezone
         run: sudo timedatectl set-timezone Asia/Shanghai
 
       - name: Merge Upstream
@@ -29,7 +29,8 @@ jobs:
           git config --global user.name "zyql33361"
           git config --global user.email "zyql613052@gmail.com"
           git checkout master
-          export GIT_COMMITTER_DATE="$(date)"
-          git merge -X theirs upstream/master --allow-unrelated-histories \
-            --commit --date="$(date)"
+          CURRENT_DATE="$(date +'%Y-%m-%dT%H:%M:%S %z')"
+          export GIT_COMMITTER_DATE="$CURRENT_DATE"
+          git merge -X theirs upstream/master --allow-unrelated-histories
+          git commit --amend --no-edit --date="$CURRENT_DATE" || true
           git push origin master --force
