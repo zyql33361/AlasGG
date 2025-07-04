@@ -2,7 +2,7 @@ name: Sync Upstream
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 * * * *'  # 每小时运行
   workflow_dispatch:
 
 jobs:
@@ -24,13 +24,37 @@ jobs:
       - name: Set Local Timezone
         run: sudo timedatectl set-timezone Asia/Shanghai
 
-      - name: Merge Upstream
+      - name: Check for Updates
+        id: check-updates
         run: |
-          git config --global user.name "zyql33361"
-          git config --global user.email "zyql613052@gmail.com"
+          if git merge-base --is-ancestor upstream/master master; then
+            echo "status=no-updates" >> $GITHUB_OUTPUT
+          else
+            echo "status=updates-available" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Merge Upstream (if updates available)
+        if: steps.check-updates.outputs.status == 'updates-available'
+        run: |
+          git config --global user.name "LmeSzinc"
+          git config --global user.email "lmeszincsales@gmail.com"
           git checkout master
+          
+          # 准备时间戳
           CURRENT_DATE="$(date +'%Y-%m-%dT%H:%M:%S %z')"
           export GIT_COMMITTER_DATE="$CURRENT_DATE"
+          
+          # 执行合并
           git merge -X theirs upstream/master --allow-unrelated-histories
-          git commit --amend --no-edit --date="$CURRENT_DATE" || true
+          
+          # 修正提交时间
+          git commit --amend --no-edit --date="$CURRENT_DATE"
+          
+          # 强制推送到origin
           git push origin master --force
+
+      - name: Skip Merge (no updates)
+        if: steps.check-updates.outputs.status == 'no-updates'
+        run: |
+          echo "✅ 上游没有新提交，跳过合并操作"
+          date  # 显示当前时间用于验证
