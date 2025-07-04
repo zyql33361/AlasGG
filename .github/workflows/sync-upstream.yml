@@ -36,8 +36,8 @@ jobs:
       - name: Merge Upstream (if updates available)
         if: steps.check-updates.outputs.status == 'updates-available'
         run: |
-          git config --global user.name "LmeSzinc"
-          git config --global user.email "lmeszincsales@gmail.com"
+          git config --global user.name "zyql33361"
+          git config --global user.email "zyql613052@gmail.com"
           git checkout master
           
           # 准备时间戳
