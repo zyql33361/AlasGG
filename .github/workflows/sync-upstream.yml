@@ -20,11 +20,16 @@ jobs:
         run: |
           git remote add upstream https://github.com/LmeSzinc/AzurLaneAutoScript.git
           git fetch upstream
+          
+      - name: Set Local Timezone  # 新增时区设置步骤
+        run: sudo timedatectl set-timezone Asia/Shanghai
 
       - name: Merge Upstream
         run: |
           git config --global user.name "zyql33361"
           git config --global user.email "zyql613052@gmail.com"
           git checkout master
-          git merge -X theirs upstream/master --allow-unrelated-histories
+          export GIT_COMMITTER_DATE="$(date)"
+          git merge -X theirs upstream/master --allow-unrelated-histories \
+            --commit --date="$(date)"
           git push origin master --force
