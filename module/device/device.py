@@ -15,8 +15,13 @@ from module.config.utils import get_server_next_update
 from module.device.app_control import AppControl
 from module.device.control import Control
 from module.device.screenshot import Screenshot
-from module.exception import (EmulatorNotRunningError, GameNotRunningError, GameStuckError, GameTooManyClickError,
-                              RequestHumanTakeover)
+from module.exception import (
+    EmulatorNotRunningError,
+    GameNotRunningError,
+    GameStuckError,
+    GameTooManyClickError,
+    RequestHumanTakeover
+)
 from module.handler.assets import GET_MISSION
 from module.logger import logger
 
@@ -65,7 +70,7 @@ class Device(Screenshot, Control, AppControl):
     _screen_size_checked = False
     detect_record = set()
     click_record = collections.deque(maxlen=15)
-    stuck_timer = Timer(60, count=60).start()
+    stuck_timer = Timer(180, count=60).start()
     stuck_timer_long = Timer(180, count=180).start()
     stuck_long_wait_list = ['BATTLE_STATUS_S', 'PAUSE', 'LOGIN_CHECK']
 
@@ -105,6 +110,10 @@ class Device(Screenshot, Control, AppControl):
                 self.early_maatouch_init()
             if self.config.Emulator_ControlMethod == 'minitouch':
                 self.early_minitouch_init()
+
+        record_maxlen = self.config.Optimization_ClickMaxRecord
+        if record_maxlen != self.click_record.maxlen:
+            self.click_record = collections.deque(maxlen=record_maxlen)
 
     def run_simple_screenshot_benchmark(self):
         """
@@ -285,19 +294,29 @@ class Device(Screenshot, Control, AppControl):
 
         return removed
 
+    def check_and_ensure_record_setting(self):
+        record_maxlen = self.config.Optimization_ClickMaxRecord
+        if self.config.Optimization_SingleButtonMaxCount > record_maxlen:
+            self.config.Optimization_SingleButtonMaxCount = int(0.8 * record_maxlen)
+        if self.config.Optimization_MultiButtonMaxCount1 + self.config.Optimization_MultiButtonMaxCount2 > record_maxlen:
+            self.config.Optimization_MultiButtonMaxCount1 = int(0.4 * record_maxlen)
+            self.config.Optimization_MultiButtonMaxCount2 = int(0.4 * record_maxlen)
+
     def click_record_check(self):
         """
         Raises:
             GameTooManyClickError:
         """
+        self.check_and_ensure_record_setting()
+
         count = collections.Counter(self.click_record).most_common(2)
-        if count[0][1] >= 12:
+        if count[0][1] >= self.config.Optimization_SingleButtonMaxCount:
             show_function_call()
             logger.warning(f'Too many click for a button: {count[0][0]}')
             logger.warning(f'History click: {[str(prev) for prev in self.click_record]}')
             self.click_record_clear()
             raise GameTooManyClickError(f'Too many click for a button: {count[0][0]}')
-        if len(count) >= 2 and count[0][1] >= 6 and count[1][1] >= 6:
+        if len(count) >= 2 and count[0][1] >= self.config.Optimization_MultiButtonMaxCount1 and count[1][1] >= self.config.Optimization_MultiButtonMaxCount2:
             show_function_call()
             logger.warning(f'Too many click between 2 buttons: {count[0][0]}, {count[1][0]}')
             logger.warning(f'History click: {[str(prev) for prev in self.click_record]}')
@@ -333,3 +352,17 @@ class Device(Screenshot, Control, AppControl):
         super().app_stop()
         self.stuck_record_clear()
         self.click_record_clear()
+
+    @staticmethod
+    def build_device(config, device=None) -> "Device":
+        if isinstance(device, Device):
+            dev = device
+        elif device is None:
+            dev = Device(config=config)
+        elif isinstance(device, str):
+            config.override(Emulator_Serial=device)
+            dev = Device(config=config)
+        else:
+            logger.warning('Alas ModuleBase received an unknown device, assume it is Device')
+            dev = device
+        return dev

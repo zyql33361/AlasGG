@@ -2,13 +2,15 @@ import os
 import re
 import json
 import time
+
+import adbutils
 import requests
 import datetime
 from typing import Any
 
 from cached_property import cached_property
 
-from deploy.config import DeployConfig
+from deploy.Windows.config import DeployConfig
 from module.base.timer import Timer
 from module.config.deep import deep_get
 from module.config.utils import read_file, get_server_last_update
@@ -203,6 +205,8 @@ class AssistantHandler:
 
     def connect(self):
         adb = os.path.abspath(DeployConfig().AdbExecutable)
+        if not os.path.exists(adb):
+            adb = adbutils.adb_path()
         self.serial = self.config.MaaEmulator_Serial
         self.serial_check()
 

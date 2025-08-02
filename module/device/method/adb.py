@@ -1,20 +1,21 @@
 import re
-import time
 from functools import wraps
 
 import cv2
 import numpy as np
+import time
 from adbutils.errors import AdbError
 from lxml import etree
 
 from module.base.decorator import Config
 from module.config.server import DICT_PACKAGE_TO_ACTIVITY
 from module.device.connection import Connection
-from module.device.method.utils import (ImageTruncated, PackageNotInstalled, RETRY_TRIES, handle_adb_error,
-                                        handle_unknown_host_service, remove_prefix, retry_sleep)
-from module.exception import RequestHumanTakeover, ScriptError
+from module.device.method.utils import (RETRY_TRIES, retry_sleep, remove_prefix, handle_adb_error,
+                                        handle_unknown_host_service, ImageTruncated, PackageNotInstalled)
+from module.exception import RequestHumanTakeover, ScriptError, EmulatorNotRunningError
 from module.logger import logger
 
+_last_image_truncated_log_time = 0 
 
 def retry(func):
     @wraps(func)
@@ -58,10 +59,37 @@ def retry(func):
                     self.detect_package()
             # ImageTruncated
             except ImageTruncated as e:
-                logger.error(e)
+                global _last_image_truncated_log_time
+                now = time.time()
+                if self.is_tunneled_device:
+                    if now - _last_image_truncated_log_time > 20:
+                        logger.error(e)
+                        _last_image_truncated_log_time = now
+                    else:
+                        pass
+                else:
+                    logger.error(e)
 
                 def init():
                     pass
+            except AdbError as e:
+                logger.exception(e)
+                import sys
+                if sys.platform == 'win32':
+                    from module.device.platform.platform_windows import PlatformWindows
+                    PlatformWindows(self.config.config_name).emulator_start()
+
+                    def init():
+                        pass
+            except EmulatorNotRunningError as e:
+                logger.exception(e)
+                import sys
+                if sys.platform == 'win32':
+                    from module.device.platform.platform_windows import PlatformWindows
+                    PlatformWindows(self.config.config_name).emulator_start()
+
+                    def init():
+                        pass
             # Unknown
             except Exception as e:
                 logger.exception(e)

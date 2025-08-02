@@ -13,6 +13,7 @@ class ManualConfig:
     > OpsiCrossMonth
     > Commission > Tactical > Research
     > Exercise
+    > SmallGame
     > Dorm > Meowfficer > Guild > Gacha
     > Reward
     > ShopFrequent > ShopOnce > Shipyard > Freebies
@@ -25,7 +26,10 @@ class ManualConfig:
     > Daily > Hard > OpsiAshBeacon > OpsiAshAssist > OpsiMonthBoss
     > Sos > EventSp > EventA > EventB > EventC > EventD
     > RaidDaily > CoalitionSp > WarArchives > MaritimeEscort
-    > Event > Event2 > Raid > Hospital > Coalition > Main > Main2 > Main3
+    > Event > Event2 > Event3 > Raid > Hospital > Coalition 
+    > ResearchFarmingSetting > ResearchFarm > ResearchFarm2 
+    > ResearchFarm3 > ResearchFarm4 > ResearchFarm5 > ResearchFarm6
+    > Main > Main2 > Main3
     > OpsiMeowfficerFarming
     > GemsFarming
     > OpsiHazard1Leveling
@@ -373,6 +377,11 @@ class ManualConfig:
     """
     # For dev purpose, auto extract new item templates
     SHOP_EXTRACT_TEMPLATE = False
+
+    """
+    module.event_shop
+    """
+    EVENT_SHOP_IGNORE_DEADLINE = False
 
     """
     module.war_archives

@@ -1,16 +1,20 @@
+from datetime import datetime, timedelta
+
 from module.base.button import Button
 from module.base.decorator import run_once
 from module.base.timer import Timer
 from module.coalition.assets import NEONCITY_FLEET_PREPARATION, NEONCITY_PREPARATION_EXIT
 from module.combat.assets import GET_ITEMS_1, GET_ITEMS_2, GET_SHIP
+from module.config.deep import deep_get
 from module.event_hospital.assets import HOSIPITAL_CLUE_CHECK, HOSPITAL_BATTLE_EXIT
 from module.exception import (GameNotRunningError, GamePageUnknownError,
-                              RequestHumanTakeover)
+                              GameTooManyClickError)
 from module.exercise.assets import EXERCISE_PREPARATION
 from module.handler.assets import (AUTO_SEARCH_MENU_EXIT, BATTLE_PASS_NEW_SEASON, BATTLE_PASS_NOTICE, GAME_TIPS,
                                    LOGIN_ANNOUNCE, LOGIN_ANNOUNCE_2, LOGIN_CHECK, LOGIN_RETURN_SIGN,
                                    MAINTENANCE_ANNOUNCE, MONTHLY_PASS_NOTICE)
 from module.handler.info_handler import InfoHandler
+from module.log_res.log_res import LogRes
 from module.logger import logger
 from module.map.assets import (FLEET_PREPARATION, MAP_PREPARATION,
                                MAP_PREPARATION_CANCEL, WITHDRAW)
@@ -19,7 +23,7 @@ from module.ocr.ocr import Ocr
 from module.os_handler.assets import (AUTO_SEARCH_REWARD, EXCHANGE_CHECK, RESET_FLEET_PREPARATION, RESET_TICKET_POPUP)
 from module.raid.assets import *
 from module.ui.assets import *
-from module.ui.page import Page, page_campaign, page_event, page_main, page_main_white, page_sp
+from module.ui.page import Page, page_campaign, page_event, page_main, page_main_white, page_sp, page_player
 from module.ui_white.assets import *
 
 
@@ -236,8 +240,13 @@ class UI(InfoHandler):
         self.interval_clear(list(Page.iter_check_buttons()))
 
         logger.hr(f"UI goto {destination}")
+        loop_count = 0
         while 1:
             GOTO_MAIN.clear_offset()
+            loop_count += 1
+            if loop_count > 100 and destination == page_event:
+                logger.warning(f'Loop count in ui_goto: {destination} too many times, break!')
+                raise RequestHumanTakeover
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
@@ -439,7 +448,7 @@ class UI(InfoHandler):
             logger.critical("Possible reason #1: You haven't set any fleets in operation siren")
             logger.critical(
                 "Possible reason #2: Your fleets haven't satisfied the level restrictions in operation siren")
-            raise RequestHumanTakeover
+            raise GameTooManyClickError
         if self.appear_then_click(RESET_TICKET_POPUP, offset=(30, 30), interval=3):
             return True
         if self.appear_then_click(RESET_FLEET_PREPARATION, offset=(30, 30), interval=3):

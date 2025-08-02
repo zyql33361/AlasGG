@@ -25,6 +25,7 @@
       "EventGeneral",
       "Event",
       "Event2",
+      "Event3",
       "Raid",
       "Hospital",
       "Coalition",
@@ -105,7 +106,8 @@
       "EventStory",
       "Benchmark",
       "AzurLaneUncensored",
-      "GameManager"
+      "GameManager",
+      "SomethingSpecial"
     ]
   }
 }

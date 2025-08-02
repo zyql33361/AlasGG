@@ -1,8 +1,8 @@
 Deploy:
   Git:
     # URL of AzurLaneAutoScript repository
-    # [CN user] Use 'git://git.lyoko.io/AzurLaneAutoScript' for faster and more stable download
-    # [Other] Use 'https://github.com/LmeSzinc/AzurLaneAutoScript'
+    # [CN user] Use 'cn' to get update from git-over-cdn service
+    # [Other] Use 'global' to get update from https://github.com/LmeSzinc/StarRailCopilot
     Repository: git://git.lyoko.io/AzurLaneAutoScript
     # Branch of Alas
     # [Developer] Use 'dev', 'app', etc, to try new features
@@ -35,7 +35,7 @@ Deploy:
     # [Other] Use you own python, and its version should be 3.7.6 64bit
     PythonExecutable: ./toolkit/python.exe
     # URL of pypi mirror
-    # [CN user] Use 'https://mirrors.aliyun.com/pypi/simple' for faster and more stable download
+    # [CN user] Use 'https://pypi.tuna.tsinghua.edu.cn/simple' for faster and more stable download
     # [Other] Use null
     PypiMirror: https://mirrors.aliyun.com/pypi/simple
     # Install dependencies at startup
@@ -128,13 +128,14 @@ Deploy:
     WebuiHost: 0.0.0.0
     # --port. Port to listen
     # You will be able to access webui via `http://{host}:{port}`
-    # [In most cases] Default to 22267
-    WebuiPort: 22267
+    # [In most cases] Default to 22367
+    WebuiPort: 22367
     # Language to use on web ui
     # 'zh-CN' for Chinese simplified
     # 'en-US' for English
     # 'ja-JP' for Japanese
     # 'zh-TW' for Chinese traditional
+    # 'es-ES' for Spanish
     Language: zh-CN
     # Theme of web ui
     # 'default' for light theme
@@ -157,6 +158,12 @@ Deploy:
     # '["alas"]' specified "alas" config
     # '["alas","alas2"]' specified "alas" "alas2" configs
     Run: null
+    # To update app.asar
+    # [In most cases] true
+    AppAsarUpdate: true
+    # --no-sandbox. https://github.com/electron/electron/issues/30966
+    # Some Windows systems cannot call the GPU normally for virtualization, and you need to manually turn off sandbox mode
+    NoSandbox: false
     # SSL support
     # Only effective when both parameters below are set
     # --ssl-key. Path to SSL key file

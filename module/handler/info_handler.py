@@ -156,14 +156,51 @@ class InfoHandler(ModuleBase):
         Returns:
             bool:
         """
+        if self.config.Error_PauseMinutes == 0:
+            PauseMinutes = 0
+        else:
+            PauseMinutes = max(10, self.config.Error_PauseMinutes)
         appear = self.appear(GET_MISSION, offset=True, interval=2)
+        appear2 = self.appear(otherlogin, offset=True, interval=2,threshold=0.7)
         if appear:
-            logger.info('Get urgent commission')
-            if drop:
-                self.handle_info_bar()
-                drop.add(self.device.image)
-            self.device.click(GET_MISSION)
-            self._hot_fix_check_wait.reset()
+            if not appear2:
+                self.device.sleep(2)
+                appear3 = self.appear(otherlogin, offset=True, interval=2,threshold=0.6)
+                if not appear3:
+                    logger.info('Get urgent commission')
+                    if drop:
+                        self.handle_info_bar()
+                        drop.add(self.device.image)
+                    self.device.click(GET_MISSION)
+                    self._hot_fix_check_wait.reset()
+            if appear2 or appear3:
+                from module.base.resource import release_resources
+                logger.warning('Other login in')
+                logger.warning('Other login in')
+                logger.warning('Other login in')
+                self.device.app_stop()
+                release_resources()
+                self.device.release_during_wait()
+
+                # 如果暂停时间为 0，则关闭该功能
+                if PauseMinutes > 0:
+                    import time
+                    from datetime import datetime, timedelta
+                    # 计算等待结束的具体时间
+                    wait_until_time = datetime.now() + timedelta(minutes=PauseMinutes)
+                    logger.info(f"Wait {PauseMinutes} minutes")
+                    logger.info(f"Wait until {wait_until_time.strftime('%Y-%m-%d %H:%M:%S')}") 
+                    # 加1秒确保不会提前退出
+                    wait_future = wait_until_time + timedelta(seconds=1)
+                    #每10分钟检测一次当前时间
+                    while datetime.now() <= wait_future:
+                        logger.info(f"Wait until {wait_until_time.strftime('%Y-%m-%d %H:%M:%S')}")
+                        now = datetime.now()
+                        remaining = (wait_future - now).total_seconds()
+                        # 每次休眠时间为10分钟（600秒），若剩余时间不足10分钟则休眠剩余时间
+                        sleep_time = 600 if remaining > 600 else remaining
+                        time.sleep(sleep_time)
+
 
         # Check game client existence after 3s to 6s
         # Hot fixes will kill AL if you clicked the confirm button

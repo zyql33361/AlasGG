@@ -88,9 +88,14 @@ Error:
     mode: yaml
     value: 'provider: null'
   ScreenshotLength: 1
+  PauseMinutes: 40
 Optimization:
   ScreenshotInterval: 0.3
   CombatScreenshotInterval: 1.0
+  ClickMaxRecord: 15
+  SingleButtonMaxCount: 12
+  MultiButtonMaxCount1: 6
+  MultiButtonMaxCount2: 6
   TaskHoardingDuration: 0
   WhenTaskQueueEmpty:
     value: goto_main
@@ -108,6 +113,9 @@ DropRecord:
     value: do_not
     option: [ do_not, save, upload, save_and_upload ]
   CombatRecord:
+    value: do_not
+    option: [ do_not, save ]
+  MetaRecord:
     value: do_not
     option: [ do_not, save ]
   OpsiRecord:
@@ -233,6 +241,140 @@ Emotion:
     value: not_in_dormitory
     option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
   Fleet2Oath: false
+
+# ====================  ResearchFarming ====================
+ResearchFarmingSetting:
+  OilLimit: 3000
+  ResearchSeries:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6, 7 ]
+  ShipIndex:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  ExperienceIndex:
+    value: 1
+    option: [ 0, 1, 2 ]
+  CheckInterval: 5
+  CurrentCampaignTimes: 0
+  OnepushNotify: true
+
+OpsiHazard1ResearchFarming:
+  Enable: false
+
+ResearchFarm1Setting:
+  Enable: false
+  Campaign: 12-4
+  Fleet1:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  EmotionValue: 119
+  EmotionControlMethod:
+    value: calculate
+    option: [ calculate, ignore, calculate_ignore ]
+  Fleet1Control:
+    value: prevent_yellow_face
+    option: [ keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face ]
+  Fleet1Recover:
+    value: not_in_dormitory
+    option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
+  Fleet2:
+    value: 2
+    option: [ 0, 1, 2, 3, 4, 5, 6 ]
+ResearchFarm2Setting:
+  Enable: false
+  Campaign: 12-4
+  Fleet1:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  EmotionValue: 119
+  EmotionControlMethod:
+    value: calculate
+    option: [ calculate, ignore, calculate_ignore ]
+  Fleet1Control:
+    value: prevent_yellow_face
+    option: [ keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face ]
+  Fleet1Recover:
+    value: not_in_dormitory
+    option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
+  Fleet2:
+    value: 2
+    option: [ 0, 1, 2, 3, 4, 5, 6 ]
+ResearchFarm3Setting:
+  Enable: false
+  Campaign: 12-4
+  Fleet1:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  EmotionValue: 119
+  EmotionControlMethod:
+    value: calculate
+    option: [ calculate, ignore, calculate_ignore ]
+  Fleet1Control:
+    value: prevent_yellow_face
+    option: [ keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face ]
+  Fleet1Recover:
+    value: not_in_dormitory
+    option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
+  Fleet2:
+    value: 2
+    option: [ 0, 1, 2, 3, 4, 5, 6 ]
+ResearchFarm4Setting:
+  Enable: false
+  Campaign: 12-4
+  Fleet1:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  EmotionValue: 119
+  EmotionControlMethod:
+    value: calculate
+    option: [ calculate, ignore, calculate_ignore ]
+  Fleet1Control:
+    value: prevent_yellow_face
+    option: [ keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face ]
+  Fleet1Recover:
+    value: not_in_dormitory
+    option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
+  Fleet2:
+    value: 2
+    option: [ 0, 1, 2, 3, 4, 5, 6 ]
+ResearchFarm5Setting:
+  Enable: false
+  Campaign: 12-4
+  Fleet1:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  EmotionValue: 119
+  EmotionControlMethod:
+    value: calculate
+    option: [ calculate, ignore, calculate_ignore ]
+  Fleet1Control:
+    value: prevent_yellow_face
+    option: [ keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face ]
+  Fleet1Recover:
+    value: not_in_dormitory
+    option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
+  Fleet2:
+    value: 2
+    option: [ 0, 1, 2, 3, 4, 5, 6 ]
+ResearchFarm6Setting:
+  Enable: false
+  Campaign: 12-4
+  Fleet1:
+    value: 1
+    option: [ 1, 2, 3, 4, 5, 6 ]
+  EmotionValue: 119
+  EmotionControlMethod:
+    value: calculate
+    option: [ calculate, ignore, calculate_ignore ]
+  Fleet1Control:
+    value: prevent_yellow_face
+    option: [ keep_exp_bonus, prevent_green_face, prevent_yellow_face, prevent_red_face ]
+  Fleet1Recover:
+    value: not_in_dormitory
+    option: [ not_in_dormitory, dormitory_floor_1, dormitory_floor_2 ]
+  Fleet2:
+    value: 2
+    option: [ 0, 1, 2, 3, 4, 5, 6 ]
 HpControl:
   UseHpBalance: false
   UseEmergencyRepair: false
@@ -277,8 +419,24 @@ GemsFarming:
   CommonDD:
     value: any
     option: [ any, favourite, aulick_or_foote , cassin_or_downes, z20_or_z21 ]
+  ALLowLowVanguardLevel: true
+  FleetNumberInHardMode:
+    value: 0
+  StopIFAutoNotEnsured: true
   CommissionLimit: true
-
+    option: ['default', 'rarity', 'level', 'total', 'join', 'intimacy', 'stat']
+  Index:
+    value: 'default'
+    option: ['default', 'all', 'vanguard', 'main', 'dd', 'cl', 'ca', 'bb', 'cv', 'repair', 'ss', 'others', 'not_available']
+  Faction:
+    value: 'default'
+    option: ['default', 'all', 'eagle', 'royal', 'sakura', 'iron', 'dragon', 'sardegna', 'northern', 'iris', 'vichya', 'other', 'not_available']
+  Rarity:
+    value: 'default'
+    option: ['default', 'all', 'common', 'rare', 'elite', 'super_rare', 'ultra']
+  Extra:
+    value: 'default'
+    option: ['default', 'no_limit', 'has_skin', 'can_retrofit', 'enhanceable', 'can_limit_break', 'not_level_max', 'can_awaken', 'can_awaken_plus', 'special', 'oath_skin', 'not_available']
 # ==================== Event ====================
 
 EventGeneral:
@@ -304,6 +462,7 @@ RaidDaily:
     hard > normal > easy
 Hospital:
   UseRecommendFleet: true
+  mapName: 0-T1
 MaritimeEscort:
   Enable: true
 Coalition:
@@ -454,6 +613,7 @@ Reward:
   CollectMission: true
   CollectWeeklyMission: true
 Awaken:
+  Favourite: false
   LevelCap:
     value: level120
     option: [ level120, level125 ]
@@ -463,7 +623,7 @@ GeneralShop:
   UseGems: false
   Refresh: false
   BuySkinBox: false
-  ConsumeCoins: false
+  ConsumeCoins: 550000
   Filter: |-
     BookRedT3 > BookYellowT3 > BookBlueT3 > BookRedT2
     > Cube
@@ -541,6 +701,26 @@ MeritShop:
 CoreShop:
   Filter: |-
     Array
+EventShop:
+  Enable: false
+  UnlockShipSSR: false
+  BuyShipUR:
+    value: 0
+    option: [ 0, 1, 2 ]
+  PresetFilter:
+    value: all
+    option:
+      - all
+      - custom
+  CustomFilter: |-
+    EquipUR > EquipSSR > GachaTicket
+    > DR > PR > Array > Chip > CatT3
+    > Meta > SkinBox
+    > Oil > Coin > FoodT1
+    > AugmentCore > AugmentEnhanceT2 > AugmentChangeT2 > AugmentChangeT1
+    > Cube > Medal > ExpBookT1
+    > CatT2 > CatT1 > PlateGeneralT3 > PlateT3 > BoxT4
+    > ShipSSR
 ShipyardDr:
   ResearchSeries:
     value: 2
@@ -641,6 +821,9 @@ Hard:
     value: 1
     option: [ 1, 2 ]
 Exercise:
+  DelayUntilHoursBeforeNextUpdate:
+    value: 12
+    option: [ 1, 2, 3, 4, 5, 12]
   OpponentChooseMode:
     value: max_exp
     option: [ max_exp, easiest, leftmost, easiest_else_exp ]
@@ -668,6 +851,7 @@ OpsiGeneral:
     option: [ 0, 1, 2, 3, 4, 5 ]
   OilLimit: 1000
   RepairThreshold: 0.4
+  DontRepair: false
   DoRandomMapEvent: true
   AkashiShopFilter: |-
     ActionPoint > PurpleCoins
@@ -686,6 +870,9 @@ OpsiFleet:
   Fleet:
     value: 1
     option: [ 1, 2, 3, 4 ]
+  FleetMode:
+    value: combat_auto
+    option: [ combat_auto, combat_manual, stand_still_in_the_middle, hide_in_bottom_left ]
   Submarine: false
 OpsiExplore:
   SpecialRadar: false
@@ -730,6 +917,8 @@ OpsiMeowfficerFarming:
     option: [ 3, 4, 5, 6, 10 ]
   TargetZone:
     value: 0
+HigherPriority:
+  Enable: false
 OpsiHazard1Leveling:
   TargetZone:
     value: 0
@@ -766,3 +955,166 @@ AzurLaneUncensored:
     display: disabled
 GameManager:
   AutoRestart: true
+
+GGHandler:
+  Enabled: false
+  GGMethod:
+    value: u2
+    option: [ u2 ]
+  RestartATX: false
+  GGPackageName: com.
+  AutoRestartGG: false
+  RestartEverytime:
+    value: true
+#    display: disabled
+  RepushLua: true
+  GGMultiplyingFactor: 200
+  Timeout: 120
+  DisabledTask:
+    value: disable_all_dangerous_task
+    option: [
+      disable_all_dangerous_task,
+      disable_guild_and_dangerous,
+      disable_exercise,
+      enable_all,
+    ]
+PowerLimit:
+  Exercise: 16500
+  Raid: 16500
+  Ash: 16500
+
+InfiniteDelay:
+  Commission:
+    value: false
+  Research:
+    value: false
+  Reward:
+    value: false
+TurnOffForcedOnSettings:
+  OpsiMeowfficerFarmingFromOpsiHazard1Leveling:
+    value: false
+  OpsiHazard1LevelingYellowCoinLimit:
+    value: false
+
+
+# ==================== Dashboard ====================
+Oil:
+  Value: 0
+  Limit: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Coin:
+  Value: 0
+  Limit: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Gem:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Pt:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+YellowCoin:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+PurpleCoin:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+ActionPoint:
+  Value: 0
+  Total: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Merit:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Cube:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Core:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+Medal:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+GuildCoin:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+ResearchPercent:
+  Value: 0
+  Limit: 100
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+PlayerLevel:
+  Value: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+PlayerExp:
+  Value: 0
+  Limit: 0
+  Color:
+    value: ^000000
+    display: hide
+  Record: 2020-01-01 00:00:00
+
+# ==================== AutoRestart ====================
+AutoRestart:
+  Enabled:
+    type: checkbox
+    value: false
+  AttemptsToRestart:
+    type: input
+    value: 114514
+  NotifyWhenAutoRestart:
+    type: checkbox
+    value: false
+InstanceRestart:
+  Enabled:
+    type: checkbox
+    value: false
+  AttemptsToRestart:
+    type: input
+    value: 114514
+  NotifyWhenAutoRestart:
+    type: checkbox
+    value: false
+  HasRestarted:
+    value: 0
+    display: hide
