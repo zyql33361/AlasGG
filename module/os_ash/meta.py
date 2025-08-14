@@ -13,6 +13,7 @@ from module.os_handler.map_event import MapEventHandler
 from module.ui.assets import BACK_ARROW
 from module.ui.page import page_reward
 from module.ui.ui import UI
+import time 
 
 
 class MetaState(Enum):
@@ -156,7 +157,11 @@ class OpsiAshBeacon(Meta):
 
         # Attack
         combat = AshCombat(config=self.config, device=self.device)
-        combat.combat(expected_end=expected_end, save_get_items=False, emotion_reduce=False)
+        if self.config.DropRecord_MetaRecord == "save":
+            _save = True
+        else:
+            _save = False
+        combat.combat(expected_end=expected_end, save_get_items=_save, emotion_reduce=False)
 
     def _handle_ash_beacon_reward(self, skip_first_screenshot=True):
         """
@@ -292,6 +297,7 @@ class OpsiAshBeacon(Meta):
                 break
             # Click
             if self.appear_then_click(HELP_ENTER, offset=(20, 20), interval=3):
+                time.sleep(1)
                 continue
             # Wrongly entered BATTLE_PREPARATION
             if self.appear(BATTLE_PREPARATION, offset=(30, 30), interval=2):
@@ -554,7 +560,11 @@ class AshBeaconAssist(Meta):
 
         # Attack
         combat = AshCombat(config=self.config, device=self.device)
-        combat.combat(expected_end=expected_end, save_get_items=False, emotion_reduce=False)
+        if self.config.DropRecord_MetaRecord == "save":
+            _save = True
+        else:
+            _save = False
+        combat.combat(expected_end=expected_end, save_get_items=_save, emotion_reduce=False)
 
     def _ensure_meta_level(self):
         """
@@ -608,6 +618,7 @@ class AshBeaconAssist(Meta):
                 logger.info('In meta page main')
                 continue
             if self.appear_then_click(BEACON_LIST, offset=(300, 20), interval=2):
+                time.sleep(1)
                 continue
             if self.appear_then_click(DOSSIER_LIST, offset=(20, 20), interval=2):
                 logger.info('In meta page dossier')

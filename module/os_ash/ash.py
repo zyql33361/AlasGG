@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
 
+import module.config.server as server
+
+from module.base.timer import Timer
 from module.base.utils import image_left_strip
 from module.combat.combat import BATTLE_PREPARATION, Combat
 from module.config.utils import DEFAULT_TIME
@@ -9,6 +12,7 @@ from module.os_ash.assets import *
 from module.os_handler.map_event import MapEventHandler
 from module.ui.assets import BACK_ARROW
 from module.ui.ui import UI
+from module.statistics.azurstats import DropImage
 
 
 class DailyDigitCounter(DigitCounter):
@@ -35,7 +39,9 @@ class AshCombat(Combat):
             return False
         if self.appear(BATTLE_STATUS, offset=(120, 20), interval=self.battle_status_click_interval):
             if drop:
-                drop.handle_add(self)
+                self.device.sleep(3)
+                self.device.screenshot()
+                drop.add(self.device.image)
             else:
                 self.device.sleep((0.25, 0.5))
             self.device.click(BATTLE_STATUS)
@@ -43,7 +49,7 @@ class AshCombat(Combat):
         if self.appear(BATTLE_PREPARATION, offset=(30, 30), interval=2):
             self.device.click(BACK_ARROW)
             return True
-        if super().handle_battle_status(drop=drop):
+        if super().handle_battle_status():
             return True
 
         return False
@@ -56,11 +62,19 @@ class AshCombat(Combat):
         return False
 
     def handle_battle_preparation(self):
-        if super().handle_battle_preparation():
-            return True
+
+        if self.appear(BATTLE_PREPARATION, offset=(20, 20)):
+            self.device.sleep(0.5)
+            self.device.screenshot()
+            # Power limit check
+            from module.gg_handler.gg_handler import GGHandler
+            GGHandler(config=self.config, device=self.device).power_limit('Ash')
+            if super().handle_battle_preparation():
+                return True
 
         if self.appear_then_click(ASH_START, offset=(30, 30), interval=2):
             return True
+
         if self.handle_get_items():
             return True
         if self.appear(BEACON_REWARD):
@@ -74,10 +88,120 @@ class AshCombat(Combat):
             raise AshBeaconFinished
 
         return False
+    def combat_preparation(self, balance_hp=False, emotion_reduce=False, auto='combat_auto', fleet_index=1):
+        META_NEED_PRE = False
+        COMBAT_ALL_PRE = False
+        ADD_BOAT_COUNT = 0
+        ADD_BOAT_IN_META = Button(area=(137, 139, 187, 213), color=(), button=(137, 139, 187, 213))
+        self.device.stuck_record_clear()
+        self.device.click_record_clear()
+        skip_first_screenshot = True
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+            if META_NEED_PRE is True:
+                if self.appear_then_click(META_PRE_1, offset=(30, 30), interval=2):
+                    continue
+                if self.appear_then_click(META_PRE_2, offset=(30, 30), interval=2):
+                    continue
+                if self.appear_then_click(META_PRE_3, offset=(30, 30), interval=2):
+                    continue
+                if self.appear_then_click(META_PRE_4, offset=(30, 30), interval=2):
+                    continue
+                if self.appear_then_click(META_PRE_5, offset=(30, 30), interval=2):
+                    continue
+                if self.appear_then_click(META_PRE_6, offset=(30, 30), interval=2):
+                    logger.info("Ash beacon all pred.")
+                    COMBAT_ALL_PRE = True
+                    self.device.sleep(2)
+                    continue
+                if self.appear_then_click_nocheck(ADD_BOAT_ENSURE, offset=(30, 30), interval=2):
+                    continue
+                if self.appear(ADD_BOAT_STATUS, interval=2):
+                    self.device.click(ADD_BOAT_IN_META)
+                    ADD_BOAT_COUNT += 1
+                    continue
 
-    def combat(self, *args, expected_end=None, **kwargs):
+                if  COMBAT_ALL_PRE is True and ADD_BOAT_COUNT >=6:
+                    if self.appear_then_click(META_PRE_SAVE, offset=(30, 30), interval=2):
+                        META_NEED_PRE = False
+                        break
+            else:
+                if self.appear(META_PRE_SAVE, offset=(30, 30), interval=0, similarity=0.85,threshold=30):
+                    META_NEED_PRE = True
+                    logger.info("Ash beacon no pre.")
+                    continue
+                if self.appear_then_click(ASH_START, offset=(30, 30), interval=2):
+                    continue
+                if self.appear(META_TEAM_READY):
+                    logger.info("Ash beacon ready.")
+                    break
+        super().combat_preparation(balance_hp=balance_hp, emotion_reduce=emotion_reduce, auto=auto, fleet_index=fleet_index)
+            
+    def combat_execute(self, auto='combat_auto', submarine='do_not_use', drop=None):
+        """
+        Args:
+            auto (str): ['combat_auto', 'combat_manual', 'stand_still_in_the_middle', 'hide_in_bottom_left']
+            submarine (str): ['do_not_use', 'hunt_only', 'every_combat']
+            drop (DropImage):
+        """
+        logger.info('Combat execute')
+        auto = 'combat_auto'
+        self.submarine_call_reset()
+        self.combat_auto_reset()
+        self.combat_manual_reset()
+        self.device.stuck_record_clear()
+        self.device.click_record_clear()
+        confirm_timer = Timer(10)
+        confirm_timer.start()
+
+        while 1:
+            self.device.screenshot()
+
+            if not confirm_timer.reached():
+                if self.handle_combat_automation_confirm():
+                    continue
+
+            if self.handle_story_skip():
+                continue
+            if self.handle_combat_auto(auto):
+                continue
+            if self.handle_combat_manual(auto):
+                continue
+            if auto != 'combat_auto' and self.auto_mode_checked and self.is_combat_executing():
+                if self.handle_combat_weapon_release():
+                    continue
+            if self.handle_submarine_call(submarine):
+                continue
+            if self.handle_popup_confirm('COMBAT_EXECUTE'):
+                continue
+
+            # End
+            if self.handle_get_items():
+                self.device.sleep((0.5,0.75))
+                continue
+            if self.handle_battle_status(drop=drop):
+                break
+
+    def combat(self, balance_hp=None, emotion_reduce=None, auto_mode="combat_auto", submarine_mode=None,
+               save_get_items=None, expected_end=None, fleet_index=1):
         try:
-            super().combat(*args, expected_end=expected_end, **kwargs)
+            with self.stat.new(
+                    genre="meta", method=self.config.DropRecord_MetaRecord
+            ) as drop:
+                if save_get_items is False:
+                    drop = None
+                elif isinstance(save_get_items, DropImage):
+                    drop = save_get_items
+                self.combat_preparation(
+                    balance_hp=balance_hp, emotion_reduce=emotion_reduce, auto=auto_mode, fleet_index=fleet_index)
+                self.combat_execute(drop=drop,
+                    auto=auto_mode, submarine=submarine_mode)
+                self.combat_status(expected_end=expected_end)
+
+            logger.info('Combat end.')
         except AshBeaconFinished:
             pass
 

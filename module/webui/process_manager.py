@@ -21,6 +21,7 @@ from module.submodule.utils import get_available_func, get_available_mod, get_av
     get_func_mod, list_mod_instance
 from module.webui.setting import State
 
+g_instance_restart_too_many_times: List[str]
 
 class ProcessManager:
     _processes: Dict[str, "ProcessManager"] = {}
@@ -39,6 +40,15 @@ class ProcessManager:
         if not self.alive:
             if func is None:
                 func = get_config_mod(self.config_name)
+            global g_instance_restart_too_many_times
+            try:
+                g_instance_restart_too_many_times.remove(self.config_name)
+            except:
+                ...
+
+            from module.webui.restart_tracker import reset_restart_count
+            reset_restart_count(self.config_name)
+        
             self._process = Process(
                 target=ProcessManager.run_process,
                 args=(

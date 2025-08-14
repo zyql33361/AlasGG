@@ -2,6 +2,7 @@
 # Define argument group of tasks.
 # --------------------
 
+
 # ==================== Alas ====================
 
 Alas:
@@ -21,6 +22,9 @@ Alas:
       - OldRetire
     Restart:
       - Scheduler
+      - RestartEmulator
+      - AutoRestart
+      - InstanceRestart
 
 # ==================== Farm ====================
 
@@ -62,6 +66,78 @@ Farm:
       - StopCondition
       - Fleet
 
+# ==================== ResearchFarming ====================
+
+ResearchFarming:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
+    ResearchFarmingSetting:
+      - Scheduler
+      - ResearchFarmingSetting
+      - OpsiHazard1ResearchFarming
+      - ResearchFarm1Setting
+      - ResearchFarm2Setting
+      - ResearchFarm3Setting
+      - ResearchFarm4Setting
+      - ResearchFarm5Setting
+      - ResearchFarm6Setting
+
+    ResearchFarm:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+    ResearchFarm2:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+    ResearchFarm3:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+    ResearchFarm4:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+    ResearchFarm5:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+    ResearchFarm6:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+
 # ==================== Event ====================
 
 Event:
@@ -81,6 +157,15 @@ Event:
       - HpControl
       - EnemyPriority
     Event2:
+      - Scheduler
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
+      - HpControl
+      - EnemyPriority
+    Event3:
       - Scheduler
       - Campaign
       - StopCondition
@@ -248,6 +333,7 @@ DailyMission:
       - MedalShop2
       - MeritShop
       - CoreShop
+      - EventShop
     Shipyard:
       - Scheduler
       - ShipyardDr
@@ -310,6 +396,7 @@ Opsi:
       - Scheduler
       - OpsiStronghold
       - OpsiFleetFilter
+      - OpsiFleet
     OpsiMonthBoss:
       - Scheduler
       - OpsiMonthBoss
@@ -320,6 +407,7 @@ Opsi:
       - OpsiFleet
     OpsiHazard1Leveling:
       - Scheduler
+      - HigherPriority
       - OpsiHazard1Leveling
       - OpsiFleet
     OpsiCrossMonth:
@@ -343,3 +431,8 @@ Tool:
       - AzurLaneUncensored
     GameManager:
       - GameManager
+      - GGHandler
+      - PowerLimit
+    SomethingSpecial:
+      - InfiniteDelay
+      - TurnOffForcedOnSettings

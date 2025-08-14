@@ -33,6 +33,8 @@ def deep_get(d, keys, default=None):
     try:
         for k in keys:
             d = d[k]
+        if d is None:
+            return default
         return d
     # No such key
     except KeyError:

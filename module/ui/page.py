@@ -336,3 +336,8 @@ page_rpg_city.link(button=RPG_HOME, destination=page_main)
 page_hospital = Page(HOSIPITAL_CHECK)
 page_hospital.link(button=GOTO_MAIN_WHITE, destination=page_main)
 page_campaign_menu.link(button=CAMPAIGN_MENU_GOTO_EVENT, destination=page_hospital)
+
+# Player
+page_player = Page(PLAYER_CHECK)
+page_main.link(button=MAIN_GOTO_PLAYER, destination=page_player)
+page_main_white.link(button=MAIN_GOTO_PLAYER_WHITE, destination=page_player)

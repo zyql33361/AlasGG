@@ -399,6 +399,11 @@ class Connection(ConnectionAttr):
                 which has nemud.app_keep_alive and always be a vertical device
                 MuMu PRO on mac has the same feature
         """
+
+        if self.is_tunneled_device and self.sdk_ver  == 32:
+            logger.info(f"is_tunneled_device={self.is_tunneled_device}")
+            return True
+
         if not self.is_mumu_family:
             return False
         if self.is_mumu_over_version_400:
@@ -665,7 +670,7 @@ class Connection(ConnectionAttr):
             else:
                 raise
 
-    def adb_push(self, local, remote):
+    def adb_push(self, local, remote, timeout=10):
         """
         Args:
             local (str):
@@ -675,7 +680,7 @@ class Connection(ConnectionAttr):
             str:
         """
         cmd = ['push', local, remote]
-        return self.adb_command(cmd)
+        return self.adb_command(cmd, timeout=timeout)
 
     def _wait_device_appear(self, serial, first_devices=None):
         """

@@ -164,7 +164,7 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc, LDOpenGL):
         """
         if interval is None:
             origin = self.config.Optimization_ScreenshotInterval
-            interval = limit_in(origin, 0.1, 0.3)
+            interval = limit_in(origin, 0.1, 2.0)
             if interval != origin:
                 logger.warning(f'Optimization.ScreenshotInterval {origin} is revised to {interval}')
                 self.config.Optimization_ScreenshotInterval = interval
@@ -173,7 +173,7 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc, LDOpenGL):
                 interval = limit_in(origin, 0.1, 0.2)
         elif interval == 'combat':
             origin = self.config.Optimization_CombatScreenshotInterval
-            interval = limit_in(origin, 0.3, 1.0)
+            interval = limit_in(origin, 0.3, 5.0)
             if interval != origin:
                 logger.warning(f'Optimization.CombatScreenshotInterval {origin} is revised to {interval}')
                 self.config.Optimization_CombatScreenshotInterval = interval
@@ -183,10 +183,6 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc, LDOpenGL):
         else:
             logger.warning(f'Unknown screenshot interval: {interval}')
             raise ScriptError(f'Unknown screenshot interval: {interval}')
-        # Screenshot interval in scrcpy is meaningless,
-        # video stream is received continuously no matter you use it or not.
-        if self.config.Emulator_ScreenshotMethod == 'scrcpy':
-            interval = 0.1
 
         if interval != self._screenshot_interval.limit:
             logger.info(f'Screenshot interval set to {interval}s')

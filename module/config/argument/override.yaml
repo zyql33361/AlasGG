@@ -15,6 +15,27 @@ Restart:
     FailureInterval: 0
     ServerUpdate: 00:00
 
+# ==================== ResearchFarm ====================
+ResearchFarm:
+  Campaign:
+    Event: campaign_main
+ResearchFarm2:
+  Campaign:
+    Event: campaign_main
+ResearchFarm3:
+  Campaign:
+    Event: campaign_main
+ResearchFarm4:
+  Campaign:
+    Event: campaign_main
+ResearchFarm5:
+  Campaign:
+    Event: campaign_main
+ResearchFarm6:
+  Campaign:
+    Event: campaign_main
+
+
 # ==================== Farm ====================
 
 Main:
@@ -56,6 +77,12 @@ Event:
 Event2:
   Campaign:
     Mode: normal
+    AmbushEvade: true
+Event3:
+  Campaign:
+    Mode: normal
+#    Event:
+#      display: disabled
     AmbushEvade: true
 EventA:
   Scheduler:
@@ -421,6 +448,9 @@ OpsiStronghold:
     SuccessInterval: 60
     FailureInterval: 60
     ServerUpdate: 00:00
+  OpsiFleet:
+    Fleet: 1
+    Submarine: true
 OpsiMeowfficerFarming:
   Scheduler:
     SuccessInterval: 30
@@ -433,7 +463,6 @@ OpsiHazard1Leveling:
     ServerUpdate: 00:00, 12:00
   OpsiFleet:
     Submarine: false
-
 # ==================== Tool ====================
 
 EventStory:
@@ -443,3 +472,41 @@ EventStory:
       value: true
       option: [ true, ]
       option_bold: [ true, ]
+      
+# ==================== GGHandler ====================
+GGHandler:
+  Timeout:
+    value: 120
+
+# ==================== Dashboard ====================
+Dashboard:
+  Oil:
+    Color: ^000000
+  Coin:
+    Color: ^FFAA33
+  Gem:
+    Color: ^FF3333
+  Pt:
+    Color: ^00BFFF
+  YellowCoin:
+    Color: ^FF8800
+  PurpleCoin:
+    Color: ^7700BB
+  ActionPoint:
+    Color: ^0000FF
+  Merit:
+    Color: ^FFFF00
+  Cube:
+    Color: ^33FFFF
+  Core:
+    Color: ^AAAAAA
+  Medal:
+    Color: ^FFDD00
+  GuildCoin:
+    Color: ^AAAAAA
+  ResearchPercent:
+    Color: ^00AA00
+  PlayerLevel:
+    Color: ^FFAA33
+  PlayerExp:
+    Color: ^FFAA33

@@ -56,8 +56,8 @@ def func(ev: threading.Event):
 
     host = args.host or State.deploy_config.WebuiHost or "0.0.0.0"
     port = args.port or int(State.deploy_config.WebuiPort) or 22267
-    ssl_key = args.ssl_key or State.deploy_config.WebuiSSLKey
-    ssl_cert = args.ssl_cert or State.deploy_config.WebuiSSLCert
+    ssl_key = args.ssl_key or getattr(State.deploy_config, "WebuiSSLKey", None)
+    ssl_cert = args.ssl_cert or getattr(State.deploy_config, "WebuiSSLCert", None)
     ssl = ssl_key is not None and ssl_cert is not None
     State.electron = args.electron
 

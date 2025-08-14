@@ -4,7 +4,9 @@ from sys import maxsize
 import inflection
 
 from module.base.timer import Timer
+from module.combat_ui.assets import PAUSE
 from module.config.utils import get_os_reset_remain
+from module.config.config import deep_get
 from module.exception import CampaignEnd, GameTooManyClickError, MapWalkError, RequestHumanTakeover, ScriptError
 from module.exercise.assets import QUIT_RECONFIRM
 from module.handler.login import LoginHandler, MAINTENANCE_ANNOUNCE
@@ -18,7 +20,7 @@ from module.os_handler.assets import AUTO_SEARCH_OS_MAP_OPTION_OFF, AUTO_SEARCH_
     AUTO_SEARCH_OS_MAP_OPTION_ON, AUTO_SEARCH_REWARD
 from module.os_handler.strategic import StrategicSearchHandler
 from module.ui.assets import GOTO_MAIN
-from module.ui.page import page_os
+from module.ui.page import page_os, page_main
 
 
 class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
@@ -205,6 +207,9 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             revert (bool): If go back to previous zone.
         """
         logger.hr('OS fleet repair')
+        if self.config.OpsiGeneral_DontRepair:
+            logger.info('Repair disabled, Alas will not repair any ship.')
+            return False
         prev = self.zone
         if self.zone.is_azur_port:
             logger.info('Already in azur port')
@@ -383,9 +388,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         # Restart the game manually rather
         # than through 'task_call'
         # Ongoing task is uninterrupted
-        self.device.app_stop()
-        self.device.app_start()
-        LoginHandler(self.config, self.device).handle_app_login()
+        self.device.app_restart()
 
         self.ui_ensure(page_os)
         if repair:
@@ -402,9 +405,10 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             int: ActionPointPreserve
         """
         remain = get_os_reset_remain()
+        preserve = deep_get(self.config.data, "OpsiMeowfficerFarming.OpsiMeowfficerFarming.ActionPointPreserve", 1000)
         if remain <= 0:
             if self.config.is_task_enabled('OpsiCrossMonth'):
-                logger.info('Just less than 1 day to OpSi reset, OpsiCrossMonth is enabled'
+                logger.info('Just less than 1 day to OpSi reset, OpsiCrossMonth is enabled, '
                             'set OpsiMeowfficerFarming.ActionPointPreserve to 300 temporarily')
                 return 300
             else:
@@ -419,6 +423,14 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             logger.info('Just less than 3 days to OpSi reset, '
                         'set ActionPointPreserve to 300 temporarily')
             return 300
+        elif self.is_cl1_enabled and remain <= 3 and preserve > 2000:
+            logger.info('Just less than 4 days to OpSi reset, '
+                        'set ActionPointPreserve to 2000 temporarily for hazard 1 leveling')
+            return 2000
+        elif self.is_cl1_enabled and remain <= 5 and preserve > 3000:
+            logger.info('Just less than 6 days to OpSi reset, '
+                        'set ActionPointPreserve to 3000 temporarily for hazard 1 leveling')
+            return 3000
         else:
             logger.info('Not close to OpSi reset')
             return maxsize
@@ -435,10 +447,12 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         """
         Keeping enough startup AP to run CL1.
         """
+        preserve = deep_get(self.config.data, "OpsiMeowfficerFarming.OpsiMeowfficerFarming.ActionPointPreserve", 1000)
+        ap_preserve = min(max(preserve, 1000, key=int), 2000, key=int)
         if self.is_cl1_enabled and get_os_reset_remain() > 2 \
                 and self.get_yellow_coins() > self.config.OS_CL1_YELLOW_COINS_PRESERVE:
-            logger.info('Keep 1000 AP when CL1 available')
-            if not self.action_point_check(1000):
+            logger.info(f'Keep {ap_preserve} AP when CL1 available')
+            if not self.action_point_check(ap_preserve):
                 self.config.opsi_task_delay(cl1_preserve=True)
                 self.config.task_stop()
 
@@ -570,6 +584,12 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             # End
             if self.is_in_main():
                 logger.info('Auto search interrupted')
+
+                if deep_get(self.config.data, "ResearchFarmingSetting.OpsiHazard1ResearchFarming.Enable", False):
+                    from module.research_farming.farming import ResearchFarming
+                    ResearchFarming(config=self.config, device=self.device).CheckResearchShipExperience()
+                    self.ui_goto(page_main)
+
                 self.config.task_stop()
 
             if self.appear_then_click(AUTO_SEARCH_REWARD, offset=(50, 50), interval=3):
