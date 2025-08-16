@@ -235,6 +235,17 @@ class ModuleBase:
 
         return appear
 
+    def appear_then_click_nocheck(self, button, ctrlcheck=False,screenshot=False, genre='items', offset=0, interval=0, similarity=0.85,threshold=30):
+        button = self.ensure_button(button)
+        appear = self.appear(button, offset=offset, interval=interval, similarity=similarity, threshold=threshold)
+        if appear:
+            if screenshot:
+                self.device.sleep(self.config.WAIT_BEFORE_SAVING_SCREEN_SHOT)
+                self.device.screenshot()
+                self.device.save_screenshot(genre=genre)
+            self.device.click(button,control_check=ctrlcheck)
+        return appear
+        
     def match_template_color(self, button, offset=(20, 20), interval=0, similarity=0.85, threshold=30):
         """
         Args:

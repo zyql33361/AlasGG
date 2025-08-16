@@ -1,9 +1,12 @@
 import json
+import os
 import random
 import string
+import calendar
 from datetime import datetime, timedelta, timezone
 
 import yaml
+from filelock import FileLock
 
 import module.config.server as server_
 from deploy.atomic import atomic_read_text, atomic_read_bytes, atomic_write
@@ -95,6 +98,27 @@ def read_file(file):
         print(f'Unsupported config file extension: {file}')
         return {}
 
+    _, ext = os.path.splitext(file)
+    lock = FileLock(f"{file}.lock")
+    with lock:
+        print(f'read: {file}')
+        if ext == '.yaml':
+            with open(file, mode='r', encoding='utf-8') as f:
+                s = f.read()
+                data = list(yaml.safe_load_all(s))
+                if len(data) == 1:
+                    data = data[0]
+                if not data:
+                    data = {}
+                return data
+        elif ext == '.json':
+            with open(file, mode='r', encoding='utf-8') as f:
+                s = f.read()
+                return json.loads(s)
+        else:
+            print(f'Unsupported config file extension: {ext}')
+            return {}
+
 
 def write_file(file, data):
     """
@@ -179,6 +203,101 @@ def alas_instance():
         out = ['alas']
 
     return out
+
+
+def deep_get(d, keys, default=None):
+    """
+    Get values in dictionary safely.
+    https://stackoverflow.com/questions/25833613/safe-method-to-get-value-of-nested-dictionary
+
+    Args:
+        d (dict):
+        keys (str, list): Such as `Scheduler.NextRun.value`
+        default: Default return if key not found.
+
+    Returns:
+
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if d is None:
+        return default
+    if not keys:
+        return d
+    return deep_get(d.get(keys[0]), keys[1:], default)
+
+
+def deep_set(d, keys, value):
+    """
+    Set value into dictionary safely, imitating deep_get().
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if not keys:
+        return value
+    if not isinstance(d, dict):
+        d = {}
+    d[keys[0]] = deep_set(d.get(keys[0], {}), keys[1:], value)
+    return d
+
+
+def deep_pop(d, keys, default=None):
+    """
+    Pop value from dictionary safely, imitating deep_get().
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if not isinstance(d, dict):
+        return default
+    if not keys:
+        return default
+    elif len(keys) == 1:
+        return d.pop(keys[0], default)
+    return deep_pop(d.get(keys[0]), keys[1:], default)
+
+
+def deep_default(d, keys, value):
+    """
+    Set default value into dictionary safely, imitating deep_get().
+    Value is set only when the dict doesn't contain such keys.
+    """
+    if isinstance(keys, str):
+        keys = keys.split('.')
+    assert type(keys) is list
+    if not keys:
+        if d:
+            return d
+        else:
+            return value
+    if not isinstance(d, dict):
+        d = {}
+    d[keys[0]] = deep_default(d.get(keys[0], {}), keys[1:], value)
+    return d
+
+
+def deep_iter(data, depth=0, current_depth=1):
+    """
+    Iter a dictionary safely.
+
+    Args:
+        data (dict):
+        depth (int): Maximum depth to iter
+        current_depth (int):
+
+    Returns:
+        list: Key path
+        Any:
+    """
+    if isinstance(data, dict) \
+            and (depth and current_depth <= depth):
+        for key, value in data.items():
+            for child_path, child_value in deep_iter(value, depth=depth, current_depth=current_depth + 1):
+                yield [key] + child_path, child_value
+    else:
+        yield [], data
 
 
 def parse_value(value, data):
@@ -348,6 +467,16 @@ def ensure_time(second, n=3, precision=3):
             return int(second)
     else:
         return second
+
+
+def get_first_day_of_next_month() -> datetime:
+    now = datetime.now()
+    return now.replace(day=1, hour=0, minute=0, second=0, microsecond=0) + timedelta(days=(calendar.monthrange(now.year, now.month)[1]))
+
+
+def get_first_day_of_next_week() -> datetime:
+    return datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(
+        days=7 - datetime.weekday(datetime.now()))
 
 
 def get_os_next_reset():
@@ -540,6 +669,48 @@ def type_to_str(typ):
     if not isinstance(typ, type):
         typ = type(typ).__name__
     return str(typ)
+
+
+def time_delta(_timedelta):
+    """
+    Output the delta between two times
+
+    Args:
+        _timedelta : datetime.timedelta
+
+    Returns:
+        dict :  {
+                 'Y' : int,
+                 'M' : int,
+                 'D' : int,
+                 'h' : int,
+                 'm' : int,
+                 's' : int
+        }
+    """
+    _time_delta = abs(_timedelta.total_seconds())
+    d_base = datetime(2010, 1, 1, 0, 0, 0)
+    d = datetime(2010, 1, 1, 0, 0, 0) - _timedelta
+    _time_dict = {
+        'Y': d.year - d_base.year,
+        'M': d.month - d_base.month,
+        'D': d.day - d_base.day,
+        'h': d.hour - d_base.hour,
+        'm': d.minute - d_base.minute,
+        's': d.second - d_base.second
+    }
+    # _sec ={
+    #     'Y': 365*24*60*60,
+    #     'M': 30*24*60*60,
+    #     'D': 24*60*60,
+    #     'h': 60*60,
+    #     'm': 60,
+    #     's': 1
+    # }
+    # for _key in _time_dict:
+    #     _time_dict[_key] = int(_time_delta//_sec[_key])
+    #     _time_delta = _time_delta%_sec[_key]
+    return _time_dict
 
 
 if __name__ == '__main__':

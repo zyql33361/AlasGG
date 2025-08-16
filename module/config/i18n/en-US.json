@@ -8,6 +8,10 @@
       "name": "Farm",
       "help": ""
     },
+    "ResearchFarming": {
+      "name": "Menu.ResearchFarming.name",
+      "help": "Menu.ResearchFarming.help"
+    },
     "Event": {
       "name": "Event",
       "help": ""
@@ -62,6 +66,34 @@
       "name": "Commission Farming",
       "help": ""
     },
+    "ResearchFarmingSetting": {
+      "name": "Task.ResearchFarmingSetting.name",
+      "help": "Task.ResearchFarmingSetting.help"
+    },
+    "ResearchFarm": {
+      "name": "Task.ResearchFarm.name",
+      "help": "Task.ResearchFarm.help"
+    },
+    "ResearchFarm2": {
+      "name": "Task.ResearchFarm2.name",
+      "help": "Task.ResearchFarm2.help"
+    },
+    "ResearchFarm3": {
+      "name": "Task.ResearchFarm3.name",
+      "help": "Task.ResearchFarm3.help"
+    },
+    "ResearchFarm4": {
+      "name": "Task.ResearchFarm4.name",
+      "help": "Task.ResearchFarm4.help"
+    },
+    "ResearchFarm5": {
+      "name": "Task.ResearchFarm5.name",
+      "help": "Task.ResearchFarm5.help"
+    },
+    "ResearchFarm6": {
+      "name": "Task.ResearchFarm6.name",
+      "help": "Task.ResearchFarm6.help"
+    },
     "EventGeneral": {
       "name": "Event General",
       "help": ""
@@ -73,6 +105,10 @@
     "Event2": {
       "name": "Event-2",
       "help": ""
+    },
+    "Event3": {
+      "name": "Task.Event3.name",
+      "help": "Task.Event3.help"
     },
     "Raid": {
       "name": "Raid",
@@ -277,6 +313,10 @@
     "GameManager": {
       "name": "Game Manager(WIP)",
       "help": ""
+    },
+    "SomethingSpecial": {
+      "name": "Task.SomethingSpecial.name",
+      "help": "Task.SomethingSpecial.help"
     }
   },
   "Scheduler": {
@@ -503,6 +543,10 @@
     "ScreenshotLength": {
       "name": "Record Screenshot(s)",
       "help": "Number of screenshots saved when exception occurs"
+    },
+    "PauseMinutes": {
+      "name": "Delayed login time after being kicked off (minutes)",
+      "help": "Minimum limit of 10 minutes, enter 0 to close"
     }
   },
   "Optimization": {
@@ -517,6 +561,22 @@
     "CombatScreenshotInterval": {
       "name": "Take Screenshots Every X Second(s) In Combat",
       "help": "Minimum interval between 2 screenshots, limited in 0.3 ~ 1.0, can help reduce CPU during battle"
+    },
+    "ClickMaxRecord": {
+      "name": "Optimization.ClickMaxRecord.name",
+      "help": "Optimization.ClickMaxRecord.help"
+    },
+    "SingleButtonMaxCount": {
+      "name": "Optimization.SingleButtonMaxCount.name",
+      "help": "Optimization.SingleButtonMaxCount.help"
+    },
+    "MultiButtonMaxCount1": {
+      "name": "Optimization.MultiButtonMaxCount1.name",
+      "help": "Optimization.MultiButtonMaxCount1.help"
+    },
+    "MultiButtonMaxCount2": {
+      "name": "Optimization.MultiButtonMaxCount2.name",
+      "help": "Optimization.MultiButtonMaxCount2.help"
     },
     "TaskHoardingDuration": {
       "name": "Hoard Tasks For X Minute(s)",
@@ -567,6 +627,12 @@
     },
     "CombatRecord": {
       "name": "Combat Record",
+      "help": "",
+      "do_not": "Do nothing",
+      "save": "Save"
+    },
+    "MetaRecord": {
+      "name": "Meta Record",
       "help": "",
       "do_not": "Do nothing",
       "save": "Save"
@@ -1057,6 +1123,432 @@
       "help": "+10/hr emotion recovery is included into calculation"
     }
   },
+  "ResearchFarmingSetting": {
+    "_info": {
+      "name": "ResearchFarmingSetting._info.name",
+      "help": "ResearchFarmingSetting._info.help"
+    },
+    "OilLimit": {
+      "name": "ResearchFarmingSetting.OilLimit.name",
+      "help": "ResearchFarmingSetting.OilLimit.help"
+    },
+    "ResearchSeries": {
+      "name": "ResearchFarmingSetting.ResearchSeries.name",
+      "help": "ResearchFarmingSetting.ResearchSeries.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7"
+    },
+    "ShipIndex": {
+      "name": "ResearchFarmingSetting.ShipIndex.name",
+      "help": "ResearchFarmingSetting.ShipIndex.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "ExperienceIndex": {
+      "name": "ResearchFarmingSetting.ExperienceIndex.name",
+      "help": "ResearchFarmingSetting.ExperienceIndex.help",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "CheckInterval": {
+      "name": "ResearchFarmingSetting.CheckInterval.name",
+      "help": "ResearchFarmingSetting.CheckInterval.help"
+    },
+    "CurrentCampaignTimes": {
+      "name": "ResearchFarmingSetting.CurrentCampaignTimes.name",
+      "help": "ResearchFarmingSetting.CurrentCampaignTimes.help"
+    },
+    "OnepushNotify": {
+      "name": "ResearchFarmingSetting.OnepushNotify.name",
+      "help": "ResearchFarmingSetting.OnepushNotify.help"
+    }
+  },
+  "OpsiHazard1ResearchFarming": {
+    "_info": {
+      "name": "OpsiHazard1ResearchFarming._info.name",
+      "help": "OpsiHazard1ResearchFarming._info.help"
+    },
+    "Enable": {
+      "name": "OpsiHazard1ResearchFarming.Enable.name",
+      "help": "OpsiHazard1ResearchFarming.Enable.help"
+    }
+  },
+  "ResearchFarm1Setting": {
+    "_info": {
+      "name": "ResearchFarm1Setting._info.name",
+      "help": "ResearchFarm1Setting._info.help"
+    },
+    "Enable": {
+      "name": "ResearchFarm1Setting.Enable.name",
+      "help": "ResearchFarm1Setting.Enable.help"
+    },
+    "Campaign": {
+      "name": "ResearchFarm1Setting.Campaign.name",
+      "help": "ResearchFarm1Setting.Campaign.help"
+    },
+    "Fleet1": {
+      "name": "ResearchFarm1Setting.Fleet1.name",
+      "help": "ResearchFarm1Setting.Fleet1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "EmotionValue": {
+      "name": "ResearchFarm1Setting.EmotionValue.name",
+      "help": "ResearchFarm1Setting.EmotionValue.help"
+    },
+    "EmotionControlMethod": {
+      "name": "ResearchFarm1Setting.EmotionControlMethod.name",
+      "help": "ResearchFarm1Setting.EmotionControlMethod.help",
+      "calculate": "calculate",
+      "ignore": "ignore",
+      "calculate_ignore": "calculate_ignore"
+    },
+    "Fleet1Control": {
+      "name": "ResearchFarm1Setting.Fleet1Control.name",
+      "help": "ResearchFarm1Setting.Fleet1Control.help",
+      "keep_exp_bonus": "keep_exp_bonus",
+      "prevent_green_face": "prevent_green_face",
+      "prevent_yellow_face": "prevent_yellow_face",
+      "prevent_red_face": "prevent_red_face"
+    },
+    "Fleet1Recover": {
+      "name": "ResearchFarm1Setting.Fleet1Recover.name",
+      "help": "ResearchFarm1Setting.Fleet1Recover.help",
+      "not_in_dormitory": "not_in_dormitory",
+      "dormitory_floor_1": "dormitory_floor_1",
+      "dormitory_floor_2": "dormitory_floor_2"
+    },
+    "Fleet2": {
+      "name": "ResearchFarm1Setting.Fleet2.name",
+      "help": "ResearchFarm1Setting.Fleet2.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  "ResearchFarm2Setting": {
+    "_info": {
+      "name": "ResearchFarm2Setting._info.name",
+      "help": "ResearchFarm2Setting._info.help"
+    },
+    "Enable": {
+      "name": "ResearchFarm2Setting.Enable.name",
+      "help": "ResearchFarm2Setting.Enable.help"
+    },
+    "Campaign": {
+      "name": "ResearchFarm2Setting.Campaign.name",
+      "help": "ResearchFarm2Setting.Campaign.help"
+    },
+    "Fleet1": {
+      "name": "ResearchFarm2Setting.Fleet1.name",
+      "help": "ResearchFarm2Setting.Fleet1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "EmotionValue": {
+      "name": "ResearchFarm2Setting.EmotionValue.name",
+      "help": "ResearchFarm2Setting.EmotionValue.help"
+    },
+    "EmotionControlMethod": {
+      "name": "ResearchFarm2Setting.EmotionControlMethod.name",
+      "help": "ResearchFarm2Setting.EmotionControlMethod.help",
+      "calculate": "calculate",
+      "ignore": "ignore",
+      "calculate_ignore": "calculate_ignore"
+    },
+    "Fleet1Control": {
+      "name": "ResearchFarm2Setting.Fleet1Control.name",
+      "help": "ResearchFarm2Setting.Fleet1Control.help",
+      "keep_exp_bonus": "keep_exp_bonus",
+      "prevent_green_face": "prevent_green_face",
+      "prevent_yellow_face": "prevent_yellow_face",
+      "prevent_red_face": "prevent_red_face"
+    },
+    "Fleet1Recover": {
+      "name": "ResearchFarm2Setting.Fleet1Recover.name",
+      "help": "ResearchFarm2Setting.Fleet1Recover.help",
+      "not_in_dormitory": "not_in_dormitory",
+      "dormitory_floor_1": "dormitory_floor_1",
+      "dormitory_floor_2": "dormitory_floor_2"
+    },
+    "Fleet2": {
+      "name": "ResearchFarm2Setting.Fleet2.name",
+      "help": "ResearchFarm2Setting.Fleet2.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  "ResearchFarm3Setting": {
+    "_info": {
+      "name": "ResearchFarm3Setting._info.name",
+      "help": "ResearchFarm3Setting._info.help"
+    },
+    "Enable": {
+      "name": "ResearchFarm3Setting.Enable.name",
+      "help": "ResearchFarm3Setting.Enable.help"
+    },
+    "Campaign": {
+      "name": "ResearchFarm3Setting.Campaign.name",
+      "help": "ResearchFarm3Setting.Campaign.help"
+    },
+    "Fleet1": {
+      "name": "ResearchFarm3Setting.Fleet1.name",
+      "help": "ResearchFarm3Setting.Fleet1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "EmotionValue": {
+      "name": "ResearchFarm3Setting.EmotionValue.name",
+      "help": "ResearchFarm3Setting.EmotionValue.help"
+    },
+    "EmotionControlMethod": {
+      "name": "ResearchFarm3Setting.EmotionControlMethod.name",
+      "help": "ResearchFarm3Setting.EmotionControlMethod.help",
+      "calculate": "calculate",
+      "ignore": "ignore",
+      "calculate_ignore": "calculate_ignore"
+    },
+    "Fleet1Control": {
+      "name": "ResearchFarm3Setting.Fleet1Control.name",
+      "help": "ResearchFarm3Setting.Fleet1Control.help",
+      "keep_exp_bonus": "keep_exp_bonus",
+      "prevent_green_face": "prevent_green_face",
+      "prevent_yellow_face": "prevent_yellow_face",
+      "prevent_red_face": "prevent_red_face"
+    },
+    "Fleet1Recover": {
+      "name": "ResearchFarm3Setting.Fleet1Recover.name",
+      "help": "ResearchFarm3Setting.Fleet1Recover.help",
+      "not_in_dormitory": "not_in_dormitory",
+      "dormitory_floor_1": "dormitory_floor_1",
+      "dormitory_floor_2": "dormitory_floor_2"
+    },
+    "Fleet2": {
+      "name": "ResearchFarm3Setting.Fleet2.name",
+      "help": "ResearchFarm3Setting.Fleet2.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  "ResearchFarm4Setting": {
+    "_info": {
+      "name": "ResearchFarm4Setting._info.name",
+      "help": "ResearchFarm4Setting._info.help"
+    },
+    "Enable": {
+      "name": "ResearchFarm4Setting.Enable.name",
+      "help": "ResearchFarm4Setting.Enable.help"
+    },
+    "Campaign": {
+      "name": "ResearchFarm4Setting.Campaign.name",
+      "help": "ResearchFarm4Setting.Campaign.help"
+    },
+    "Fleet1": {
+      "name": "ResearchFarm4Setting.Fleet1.name",
+      "help": "ResearchFarm4Setting.Fleet1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "EmotionValue": {
+      "name": "ResearchFarm4Setting.EmotionValue.name",
+      "help": "ResearchFarm4Setting.EmotionValue.help"
+    },
+    "EmotionControlMethod": {
+      "name": "ResearchFarm4Setting.EmotionControlMethod.name",
+      "help": "ResearchFarm4Setting.EmotionControlMethod.help",
+      "calculate": "calculate",
+      "ignore": "ignore",
+      "calculate_ignore": "calculate_ignore"
+    },
+    "Fleet1Control": {
+      "name": "ResearchFarm4Setting.Fleet1Control.name",
+      "help": "ResearchFarm4Setting.Fleet1Control.help",
+      "keep_exp_bonus": "keep_exp_bonus",
+      "prevent_green_face": "prevent_green_face",
+      "prevent_yellow_face": "prevent_yellow_face",
+      "prevent_red_face": "prevent_red_face"
+    },
+    "Fleet1Recover": {
+      "name": "ResearchFarm4Setting.Fleet1Recover.name",
+      "help": "ResearchFarm4Setting.Fleet1Recover.help",
+      "not_in_dormitory": "not_in_dormitory",
+      "dormitory_floor_1": "dormitory_floor_1",
+      "dormitory_floor_2": "dormitory_floor_2"
+    },
+    "Fleet2": {
+      "name": "ResearchFarm4Setting.Fleet2.name",
+      "help": "ResearchFarm4Setting.Fleet2.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  "ResearchFarm5Setting": {
+    "_info": {
+      "name": "ResearchFarm5Setting._info.name",
+      "help": "ResearchFarm5Setting._info.help"
+    },
+    "Enable": {
+      "name": "ResearchFarm5Setting.Enable.name",
+      "help": "ResearchFarm5Setting.Enable.help"
+    },
+    "Campaign": {
+      "name": "ResearchFarm5Setting.Campaign.name",
+      "help": "ResearchFarm5Setting.Campaign.help"
+    },
+    "Fleet1": {
+      "name": "ResearchFarm5Setting.Fleet1.name",
+      "help": "ResearchFarm5Setting.Fleet1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "EmotionValue": {
+      "name": "ResearchFarm5Setting.EmotionValue.name",
+      "help": "ResearchFarm5Setting.EmotionValue.help"
+    },
+    "EmotionControlMethod": {
+      "name": "ResearchFarm5Setting.EmotionControlMethod.name",
+      "help": "ResearchFarm5Setting.EmotionControlMethod.help",
+      "calculate": "calculate",
+      "ignore": "ignore",
+      "calculate_ignore": "calculate_ignore"
+    },
+    "Fleet1Control": {
+      "name": "ResearchFarm5Setting.Fleet1Control.name",
+      "help": "ResearchFarm5Setting.Fleet1Control.help",
+      "keep_exp_bonus": "keep_exp_bonus",
+      "prevent_green_face": "prevent_green_face",
+      "prevent_yellow_face": "prevent_yellow_face",
+      "prevent_red_face": "prevent_red_face"
+    },
+    "Fleet1Recover": {
+      "name": "ResearchFarm5Setting.Fleet1Recover.name",
+      "help": "ResearchFarm5Setting.Fleet1Recover.help",
+      "not_in_dormitory": "not_in_dormitory",
+      "dormitory_floor_1": "dormitory_floor_1",
+      "dormitory_floor_2": "dormitory_floor_2"
+    },
+    "Fleet2": {
+      "name": "ResearchFarm5Setting.Fleet2.name",
+      "help": "ResearchFarm5Setting.Fleet2.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
+  "ResearchFarm6Setting": {
+    "_info": {
+      "name": "ResearchFarm6Setting._info.name",
+      "help": "ResearchFarm6Setting._info.help"
+    },
+    "Enable": {
+      "name": "ResearchFarm6Setting.Enable.name",
+      "help": "ResearchFarm6Setting.Enable.help"
+    },
+    "Campaign": {
+      "name": "ResearchFarm6Setting.Campaign.name",
+      "help": "ResearchFarm6Setting.Campaign.help"
+    },
+    "Fleet1": {
+      "name": "ResearchFarm6Setting.Fleet1.name",
+      "help": "ResearchFarm6Setting.Fleet1.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    },
+    "EmotionValue": {
+      "name": "ResearchFarm6Setting.EmotionValue.name",
+      "help": "ResearchFarm6Setting.EmotionValue.help"
+    },
+    "EmotionControlMethod": {
+      "name": "ResearchFarm6Setting.EmotionControlMethod.name",
+      "help": "ResearchFarm6Setting.EmotionControlMethod.help",
+      "calculate": "calculate",
+      "ignore": "ignore",
+      "calculate_ignore": "calculate_ignore"
+    },
+    "Fleet1Control": {
+      "name": "ResearchFarm6Setting.Fleet1Control.name",
+      "help": "ResearchFarm6Setting.Fleet1Control.help",
+      "keep_exp_bonus": "keep_exp_bonus",
+      "prevent_green_face": "prevent_green_face",
+      "prevent_yellow_face": "prevent_yellow_face",
+      "prevent_red_face": "prevent_red_face"
+    },
+    "Fleet1Recover": {
+      "name": "ResearchFarm6Setting.Fleet1Recover.name",
+      "help": "ResearchFarm6Setting.Fleet1Recover.help",
+      "not_in_dormitory": "not_in_dormitory",
+      "dormitory_floor_1": "dormitory_floor_1",
+      "dormitory_floor_2": "dormitory_floor_2"
+    },
+    "Fleet2": {
+      "name": "ResearchFarm6Setting.Fleet2.name",
+      "help": "ResearchFarm6Setting.Fleet2.help",
+      "0": "0",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6"
+    }
+  },
   "HpControl": {
     "_info": {
       "name": "HP Control Settings",
@@ -1206,6 +1698,21 @@
       "cassin_or_downes": "Cassin or Downes",
       "z20_or_z21": "Z20 or Z21"
     },
+    "ALLowLowVanguardLevel": {
+      "name": "ALLow Low Vanguard Level",
+      "help": "Destroyers over level 10 will now be used, 49 for Event CD"
+    },
+    "FleetNumberInHardMode": {
+      "name": "Fleet number used in hard mode",
+      "help": "Fleet number used in hard mode like Event C/D",
+      "0": "Not a hard mode",
+      "1": "Fleet 1",
+      "2": "Fleet 2"
+    },
+    "StopIFAutoNotEnsured": {
+      "name": "GemsFarming.StopIFAutoNotEnsured.name",
+      "help": "GemsFarming.StopIFAutoNotEnsured.help"
+    },
     "CommissionLimit": {
       "name": "Prevent Too Many Urgent Commissions",
       "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
@@ -1296,6 +1803,10 @@
     "UseRecommendFleet": {
       "name": "Use Fleet Recommendation",
       "help": "If turned off, you need to manually prepare fleets of all 15 stages in advance"
+    },
+    "mapName": {
+      "name": "Hospital.mapName.name",
+      "help": "Hospital.mapName.help"
     }
   },
   "MaritimeEscort": {
@@ -1640,6 +2151,10 @@
       "name": "Cognitive Awakening Settings",
       "help": "Awaken all ships in dock til cognitive chips/arrays exhausted"
     },
+    "Favourite": {
+      "name": "Awaken.Favourite.name",
+      "help": "Awaken.Favourite.help"
+    },
     "LevelCap": {
       "name": "To Level Cap",
       "help": "",
@@ -1670,7 +2185,7 @@
     },
     "ConsumeCoins": {
       "name": "Consume Spilled Coins",
-      "help": "Buy all items when the coins exceed 550000"
+      "help": "Buy all items when the coins exceed 500000"
     },
     "Filter": {
       "name": "Item Filter",
@@ -1873,6 +2388,37 @@
     "Filter": {
       "name": "Item Filter",
       "help": "All options have been defined at <https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string>\nHowever unlike other shops, only Chip and Array are supported\nALAS does not browse, scroll, or recognize any other items displayed besides those two"
+    }
+  },
+  "EventShop": {
+    "_info": {
+      "name": "Event Shop",
+      "help": "Ships will be bought after event ends, and corresponding pts will be preserved."
+    },
+    "Enable": {
+      "name": "Enable Event Shop",
+      "help": ""
+    },
+    "UnlockShipSSR": {
+      "name": "Unlock event SSR ship",
+      "help": "If not enabled, will discard `ShipSSR` and `Meta` in filter string."
+    },
+    "BuyShipUR": {
+      "name": "Buy X event UR ship",
+      "help": "",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "PresetFilter": {
+      "name": "Preset Filter Select",
+      "help": "",
+      "all": "all",
+      "custom": "custom"
+    },
+    "CustomFilter": {
+      "name": "Custom Filter",
+      "help": "To use your own filter, set \"Preset Filter Select\" to \"custom\". All options have been defined at  <https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string>"
     }
   },
   "ShipyardDr": {
@@ -2226,6 +2772,16 @@
       "name": "Exercise Settings",
       "help": "Runs exercise and automatically retreats when sum HP volume is low"
     },
+    "DelayUntilHoursBeforeNextUpdate": {
+      "name": "Exercise.DelayUntilHoursBeforeNextUpdate.name",
+      "help": "Exercise.DelayUntilHoursBeforeNextUpdate.help",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "12": "12"
+    },
     "OpponentChooseMode": {
       "name": "Opponent Choose Mode",
       "help": "",
@@ -2322,6 +2878,10 @@
       "name": "Repair Threshold",
       "help": "After completion of an OpSi map; if any one ship's HP is below threshold, retreat back to nearest port for repairs\n0.0 ~ 1.0"
     },
+    "DontRepair": {
+      "name": "OpsiGeneral.DontRepair.name",
+      "help": "OpsiGeneral.DontRepair.help"
+    },
     "DoRandomMapEvent": {
       "name": "Do Random Map Events",
       "help": "Rescan the whole map after auto search, purchase akashi's shop, use siren logging tower, use siren scanning device, unlock mechanism that require 2 fleets,"
@@ -2381,6 +2941,14 @@
       "2": "2",
       "3": "3",
       "4": "4"
+    },
+    "FleetMode": {
+      "name": "Fleet Mode",
+      "help": "",
+      "combat_auto": "combat_auto",
+      "combat_manual": "combat_manual",
+      "stand_still_in_the_middle": "stand_still_in_the_middle",
+      "hide_in_bottom_left": "hide_in_bottom_left"
     },
     "Submarine": {
       "name": "Call Submarine",
@@ -2521,6 +3089,16 @@
       "help": "Supports either Zone ID or Name in CN/EN/JP/TW, i.e. \"51\", \"NA Ocean SE Sector E\"\nIf specified, Alas will loop on this same zone after each clear\nUse default value 0 or clear the field to remove the specification\nZone information can be acquired from <./module/os/map_data.py>"
     }
   },
+  "HigherPriority": {
+    "_info": {
+      "name": "HigherPriority._info.name",
+      "help": "HigherPriority._info.help"
+    },
+    "Enable": {
+      "name": "HigherPriority.Enable.name",
+      "help": "HigherPriority.Enable.help"
+    }
+  },
   "OpsiHazard1Leveling": {
     "_info": {
       "name": "CL1 leveling",
@@ -2612,6 +3190,437 @@
       "help": "Log back into the game when the game has been ended."
     }
   },
+  "GGHandler": {
+    "_info": {
+      "name": "GG Handler",
+      "help": ""
+    },
+    "Enabled": {
+      "name": "Enabled",
+      "help": ""
+    },
+    "GGMethod": {
+      "name": "Control Method",
+      "help": "Screenshot is slow and has some bugs, only for environments that not support UiAutomator",
+      "u2": "UiAutomator"
+    },
+    "RestartATX": {
+      "name": "GGHandler.RestartATX.name",
+      "help": "GGHandler.RestartATX.help"
+    },
+    "GGPackageName": {
+      "name": "GG Package Name",
+      "help": "In /Android/data/com.xxxxxxx. (xxxxxxx means a lot of random characters)"
+    },
+    "AutoRestartGG": {
+      "name": "Auto Restart GG",
+      "help": "Start GG before tasks"
+    },
+    "RestartEverytime": {
+      "name": "Restart Everytime Alas starts",
+      "help": "For sake of safety"
+    },
+    "RepushLua": {
+      "name": "GGHandler.RepushLua.name",
+      "help": "GGHandler.RepushLua.help"
+    },
+    "GGMultiplyingFactor": {
+      "name": "GG Multiplying Factor",
+      "help": "1 - 9999 Recommended"
+    },
+    "Timeout": {
+      "name": "GGHandler.Timeout.name",
+      "help": "GGHandler.Timeout.help"
+    },
+    "DisabledTask": {
+      "name": "Disabled Tasks",
+      "help": "",
+      "disable_all_dangerous_task": "Disable_all_dangerous_task",
+      "disable_guild_and_dangerous": "disable_guild_and_dangerous",
+      "disable_exercise": "Disable_exercise",
+      "enable_all": "Enable_all"
+    }
+  },
+  "PowerLimit": {
+    "_info": {
+      "name": "Power Limit",
+      "help": "Power over this will cause a restart and enable GG in config"
+    },
+    "Exercise": {
+      "name": "Exercise",
+      "help": ""
+    },
+    "Raid": {
+      "name": "Raid",
+      "help": ""
+    },
+    "Ash": {
+      "name": "Ash",
+      "help": ""
+    }
+  },
+  "InfiniteDelay": {
+    "_info": {
+      "name": "InfiniteDelay._info.name",
+      "help": "InfiniteDelay._info.help"
+    },
+    "Commission": {
+      "name": "InfiniteDelay.Commission.name",
+      "help": "InfiniteDelay.Commission.help"
+    },
+    "Research": {
+      "name": "InfiniteDelay.Research.name",
+      "help": "InfiniteDelay.Research.help"
+    },
+    "Reward": {
+      "name": "InfiniteDelay.Reward.name",
+      "help": "InfiniteDelay.Reward.help"
+    }
+  },
+  "TurnOffForcedOnSettings": {
+    "_info": {
+      "name": "TurnOffForcedOnSettings._info.name",
+      "help": "TurnOffForcedOnSettings._info.help"
+    },
+    "OpsiMeowfficerFarmingFromOpsiHazard1Leveling": {
+      "name": "TurnOffForcedOnSettings.OpsiMeowfficerFarmingFromOpsiHazard1Leveling.name",
+      "help": "TurnOffForcedOnSettings.OpsiMeowfficerFarmingFromOpsiHazard1Leveling.help"
+    },
+    "OpsiHazard1LevelingYellowCoinLimit": {
+      "name": "TurnOffForcedOnSettings.OpsiHazard1LevelingYellowCoinLimit.name",
+      "help": "TurnOffForcedOnSettings.OpsiHazard1LevelingYellowCoinLimit.help"
+    }
+  },
+  "Oil": {
+    "_info": {
+      "name": "Oil._info.name",
+      "help": "Oil._info.help"
+    },
+    "Value": {
+      "name": "Oil.Value.name",
+      "help": "Oil.Value.help"
+    },
+    "Limit": {
+      "name": "Oil.Limit.name",
+      "help": "Oil.Limit.help"
+    },
+    "Color": {
+      "name": "Oil.Color.name",
+      "help": "Oil.Color.help"
+    },
+    "Record": {
+      "name": "Oil.Record.name",
+      "help": "Oil.Record.help"
+    }
+  },
+  "Coin": {
+    "_info": {
+      "name": "Coin._info.name",
+      "help": "Coin._info.help"
+    },
+    "Value": {
+      "name": "Coin.Value.name",
+      "help": "Coin.Value.help"
+    },
+    "Limit": {
+      "name": "Coin.Limit.name",
+      "help": "Coin.Limit.help"
+    },
+    "Color": {
+      "name": "Coin.Color.name",
+      "help": "Coin.Color.help"
+    },
+    "Record": {
+      "name": "Coin.Record.name",
+      "help": "Coin.Record.help"
+    }
+  },
+  "Gem": {
+    "_info": {
+      "name": "Gem._info.name",
+      "help": "Gem._info.help"
+    },
+    "Value": {
+      "name": "Gem.Value.name",
+      "help": "Gem.Value.help"
+    },
+    "Color": {
+      "name": "Gem.Color.name",
+      "help": "Gem.Color.help"
+    },
+    "Record": {
+      "name": "Gem.Record.name",
+      "help": "Gem.Record.help"
+    }
+  },
+  "Pt": {
+    "_info": {
+      "name": "Pt._info.name",
+      "help": "Pt._info.help"
+    },
+    "Value": {
+      "name": "Pt.Value.name",
+      "help": "Pt.Value.help"
+    },
+    "Color": {
+      "name": "Pt.Color.name",
+      "help": "Pt.Color.help"
+    },
+    "Record": {
+      "name": "Pt.Record.name",
+      "help": "Pt.Record.help"
+    }
+  },
+  "YellowCoin": {
+    "_info": {
+      "name": "YellowCoin._info.name",
+      "help": "YellowCoin._info.help"
+    },
+    "Value": {
+      "name": "YellowCoin.Value.name",
+      "help": "YellowCoin.Value.help"
+    },
+    "Color": {
+      "name": "YellowCoin.Color.name",
+      "help": "YellowCoin.Color.help"
+    },
+    "Record": {
+      "name": "YellowCoin.Record.name",
+      "help": "YellowCoin.Record.help"
+    }
+  },
+  "PurpleCoin": {
+    "_info": {
+      "name": "PurpleCoin._info.name",
+      "help": "PurpleCoin._info.help"
+    },
+    "Value": {
+      "name": "PurpleCoin.Value.name",
+      "help": "PurpleCoin.Value.help"
+    },
+    "Color": {
+      "name": "PurpleCoin.Color.name",
+      "help": "PurpleCoin.Color.help"
+    },
+    "Record": {
+      "name": "PurpleCoin.Record.name",
+      "help": "PurpleCoin.Record.help"
+    }
+  },
+  "ActionPoint": {
+    "_info": {
+      "name": "ActionPoint._info.name",
+      "help": "ActionPoint._info.help"
+    },
+    "Value": {
+      "name": "ActionPoint.Value.name",
+      "help": "ActionPoint.Value.help"
+    },
+    "Total": {
+      "name": "ActionPoint.Total.name",
+      "help": "ActionPoint.Total.help"
+    },
+    "Color": {
+      "name": "ActionPoint.Color.name",
+      "help": "ActionPoint.Color.help"
+    },
+    "Record": {
+      "name": "ActionPoint.Record.name",
+      "help": "ActionPoint.Record.help"
+    }
+  },
+  "Merit": {
+    "_info": {
+      "name": "Merit._info.name",
+      "help": "Merit._info.help"
+    },
+    "Value": {
+      "name": "Merit.Value.name",
+      "help": "Merit.Value.help"
+    },
+    "Color": {
+      "name": "Merit.Color.name",
+      "help": "Merit.Color.help"
+    },
+    "Record": {
+      "name": "Merit.Record.name",
+      "help": "Merit.Record.help"
+    }
+  },
+  "Cube": {
+    "_info": {
+      "name": "Cube._info.name",
+      "help": "Cube._info.help"
+    },
+    "Value": {
+      "name": "Cube.Value.name",
+      "help": "Cube.Value.help"
+    },
+    "Color": {
+      "name": "Cube.Color.name",
+      "help": "Cube.Color.help"
+    },
+    "Record": {
+      "name": "Cube.Record.name",
+      "help": "Cube.Record.help"
+    }
+  },
+  "Core": {
+    "_info": {
+      "name": "Core._info.name",
+      "help": "Core._info.help"
+    },
+    "Value": {
+      "name": "Core.Value.name",
+      "help": "Core.Value.help"
+    },
+    "Color": {
+      "name": "Core.Color.name",
+      "help": "Core.Color.help"
+    },
+    "Record": {
+      "name": "Core.Record.name",
+      "help": "Core.Record.help"
+    }
+  },
+  "Medal": {
+    "_info": {
+      "name": "Medal._info.name",
+      "help": "Medal._info.help"
+    },
+    "Value": {
+      "name": "Medal.Value.name",
+      "help": "Medal.Value.help"
+    },
+    "Color": {
+      "name": "Medal.Color.name",
+      "help": "Medal.Color.help"
+    },
+    "Record": {
+      "name": "Medal.Record.name",
+      "help": "Medal.Record.help"
+    }
+  },
+  "GuildCoin": {
+    "_info": {
+      "name": "GuildCoin._info.name",
+      "help": "GuildCoin._info.help"
+    },
+    "Value": {
+      "name": "GuildCoin.Value.name",
+      "help": "GuildCoin.Value.help"
+    },
+    "Color": {
+      "name": "GuildCoin.Color.name",
+      "help": "GuildCoin.Color.help"
+    },
+    "Record": {
+      "name": "GuildCoin.Record.name",
+      "help": "GuildCoin.Record.help"
+    }
+  },
+  "ResearchPercent": {
+    "_info": {
+      "name": "ResearchPercent._info.name",
+      "help": "ResearchPercent._info.help"
+    },
+    "Value": {
+      "name": "ResearchPercent.Value.name",
+      "help": "ResearchPercent.Value.help"
+    },
+    "Limit": {
+      "name": "ResearchPercent.Limit.name",
+      "help": "ResearchPercent.Limit.help"
+    },
+    "Color": {
+      "name": "ResearchPercent.Color.name",
+      "help": "ResearchPercent.Color.help"
+    },
+    "Record": {
+      "name": "ResearchPercent.Record.name",
+      "help": "ResearchPercent.Record.help"
+    }
+  },
+  "PlayerLevel": {
+    "_info": {
+      "name": "PlayerLevel._info.name",
+      "help": "PlayerLevel._info.help"
+    },
+    "Value": {
+      "name": "PlayerLevel.Value.name",
+      "help": "PlayerLevel.Value.help"
+    },
+    "Color": {
+      "name": "PlayerLevel.Color.name",
+      "help": "PlayerLevel.Color.help"
+    },
+    "Record": {
+      "name": "PlayerLevel.Record.name",
+      "help": "PlayerLevel.Record.help"
+    }
+  },
+  "PlayerExp": {
+    "_info": {
+      "name": "PlayerExp._info.name",
+      "help": "PlayerExp._info.help"
+    },
+    "Value": {
+      "name": "PlayerExp.Value.name",
+      "help": "PlayerExp.Value.help"
+    },
+    "Limit": {
+      "name": "PlayerExp.Limit.name",
+      "help": "PlayerExp.Limit.help"
+    },
+    "Color": {
+      "name": "PlayerExp.Color.name",
+      "help": "PlayerExp.Color.help"
+    },
+    "Record": {
+      "name": "PlayerExp.Record.name",
+      "help": "PlayerExp.Record.help"
+    }
+  },
+  "AutoRestart": {
+    "_info": {
+      "name": "AutoRestart._info.name",
+      "help": "AutoRestart._info.help"
+    },
+    "Enabled": {
+      "name": "AutoRestart.Enabled.name",
+      "help": "AutoRestart.Enabled.help"
+    },
+    "AttemptsToRestart": {
+      "name": "AutoRestart.AttemptsToRestart.name",
+      "help": "AutoRestart.AttemptsToRestart.help"
+    },
+    "NotifyWhenAutoRestart": {
+      "name": "AutoRestart.NotifyWhenAutoRestart.name",
+      "help": "AutoRestart.NotifyWhenAutoRestart.help"
+    }
+  },
+  "InstanceRestart": {
+    "_info": {
+      "name": "InstanceRestart._info.name",
+      "help": "InstanceRestart._info.help"
+    },
+    "Enabled": {
+      "name": "InstanceRestart.Enabled.name",
+      "help": "InstanceRestart.Enabled.help"
+    },
+    "AttemptsToRestart": {
+      "name": "InstanceRestart.AttemptsToRestart.name",
+      "help": "InstanceRestart.AttemptsToRestart.help"
+    },
+    "NotifyWhenAutoRestart": {
+      "name": "InstanceRestart.NotifyWhenAutoRestart.name",
+      "help": "InstanceRestart.NotifyWhenAutoRestart.help"
+    },
+    "HasRestarted": {
+      "name": "InstanceRestart.HasRestarted.name",
+      "help": "InstanceRestart.HasRestarted.help"
+    }
+  },
   "Storage": {
     "_info": {
       "name": "Task status",
@@ -2636,6 +3645,8 @@
       "Stop": "Stop",
       "ScrollON": "Auto Scroll ON",
       "ScrollOFF": "Auto Scroll OFF",
+      "DashboardON": "Fold",
+      "DashboardOFF": "Unfold",
       "ClearLog": "Clear Log",
       "Setting": "Setting",
       "CheckUpdate": "Check update",
@@ -2668,6 +3679,29 @@
     },
     "Overview": {
       "Scheduler": "Scheduler",
+      "Dashboard": "Gui.Overview.Dashboard",
+      "SecondsAgo": "Seconds ago",
+      "MinutesAgo": "Minutes ago",
+      "HoursAgo": "Hours ago",
+      "DaysAgo": "Days ago",
+      "MonthsAgo": "Months ago",
+      "YearsAgo": "Years ago",
+      "NoData": "No data",
+      "Oil": "Oil",
+      "Coin": "Coin",
+      "Gem": "Gem",
+      "Cube": "Cube",
+      "Pt": "Event Pt",
+      "YellowCoin": "Operation Supply Coin",
+      "PurpleCoin": "Special Item Token",
+      "ActionPoint": "Action Point",
+      "Merit": "Merit",
+      "Medal": "Medal",
+      "Core": "Core Data",
+      "GuildCoin": "Guild Coin",
+      "ResearchPercent": "Gui.Overview.ResearchPercent",
+      "PlayerLevel": "Gui.Overview.PlayerLevel",
+      "PlayerExp": "Gui.Overview.PlayerExp",
       "Log": "Log",
       "Running": "Running",
       "Pending": "Pending",

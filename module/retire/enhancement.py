@@ -130,7 +130,7 @@ class Enhancement(Dock):
                 logger.info(
                     'Reached maximum number to check, exiting current category')
                 return "state_enhance_exit"
-            if not self.ship_side_navbar_ensure(bottom=4):
+            if not self.equip_side_navbar_ensure(bottom=4):
                 return "state_enhance_check"
 
             self.wait_until_appear(ENHANCE_RECOMMEND, offset=(
@@ -192,7 +192,7 @@ class Enhancement(Dock):
                 return "state_enhance_confirm"
 
             # Try to swipe to next
-            if self.ship_view_next(check_button=ENHANCE_RECOMMEND):
+            if self.equip_view_next(check_button=ENHANCE_RECOMMEND):
                 if not need_to_skip:
                     nonlocal ship_count
                     ship_count -= 1
@@ -223,11 +223,11 @@ class Enhancement(Dock):
             if state == "state_enhance_check":
                 # Avoid too_many_click exception caused by multiple tries without material
                 if state_list[-2:] == ["state_enhance_recommend", "state_enhance_fail"]:
-                    while self.device.click_record and (self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'SHIP_SWIPE']):
+                    while self.device.click_record and (self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'EQUIP_SWIPE']):
                         self.device.click_record.pop()
                 # Avoid too_many_click exception caused by enhancement failure on in-battle ships
                 elif state_list[-3:] == ["state_enhance_attempt", "state_enhance_confirm", "state_enhance_fail"]:
-                    while self.device.click_record and (self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'SHIP_SWIPE', 'ENHANCE_CONFIRM']):
+                    while self.device.click_record and (self.device.click_record[-1] in ['ENHANCE_RECOMMEND', 'EQUIP_SWIPE', 'ENHANCE_CONFIRM']):
                         self.device.click_record.pop()
                 state_list.clear()
             state_list.append(state)
